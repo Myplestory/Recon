@@ -2,7 +2,9 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Sapphire</title>
+    <meta htt-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"
+    <title></title>
     <link rel="stylesheet" href="index.css">
   </head>
   <body>
@@ -10,7 +12,7 @@
     <header id="titlebar">
       <div id="drag-region">
         <div id="window-title">
-          <span>Sapphire</span>
+          <span>Recon v.1</span>
         </div>
         <div id="window-controls">
           <div class="button" id="min-button">
@@ -28,9 +30,252 @@
         </div>
       </div>
     </header>
-    <div id="main">
-      <h1>SAPPHIRE</h1>
-      <p>Description</p>
+    <div class="container">
+      <aside>
+        <div id="delay">
+          <div id="slider1">
+            <span id="num" class="number">0</span>
+            <span id="ms">ms</span>
+            <input type="range" value="0"max="1000"/>
+          </div>
+        </div>
+        <div id="maps">
+          <div class="images" id="Bind">
+            <img class="icon" srcset="icons/Bind.jpg" width="80px"/>
+            <select id="AgentSelect" id="BindAgentSelect"> 
+                <option value="Astra">Astra</option> 
+                <option value="Breach">Breach</option> 
+                <option value="Brimstone">Brimstone</option> 
+                <option value="Chamber">Chamber</option>
+                <option value="Cypher">Cypher</option> 
+                <option value="Fade">Fade</option> 
+                <option value="Gekko">Gekko</option> 
+                <option value="Harbor">Harbor</option> 
+                <option value="Jett">Jett</option> 
+                <option value="KAY/O">KAY/O</option> 
+                <option value="Killjoy">Killjoy</option> 
+                <option value="Neon">Neon</option>
+                <option value="Omen">Omen</option> 
+                <option value="Phoenix">Phoenix</option> 
+                <option value="Raze">Raze</option> 
+                <option value="Reyna">Reyna</option> 
+                <option value="Sage">Sage</option>
+                <option value="Skye">Skye</option>
+                <option value="Sova">Sova</option>
+                <option value="Viper">Viper</option>
+                <option value="Yoru">Yoru</option>
+            </select>
+          </div>
+          <div class="images" id="Haven">
+            <img class="icon" srcset="icons/Haven.jpg" width="80px"/>
+            <select id="AgentSelect" id="HavenAgentSelect"> 
+              <option value="Astra">Astra</option> 
+              <option value="Breach">Breach</option> 
+              <option value="Brimstone">Brimstone</option> 
+              <option value="Chamber">Chamber</option>
+              <option value="Cypher">Cypher</option> 
+              <option value="Fade">Fade</option> 
+              <option value="Gekko">Gekko</option> 
+              <option value="Harbor">Harbor</option> 
+              <option value="Jett">Jett</option> 
+              <option value="KAY/O">KAY/O</option> 
+              <option value="Killjoy">Killjoy</option> 
+              <option value="Neon">Neon</option>
+              <option value="Omen">Omen</option> 
+              <option value="Phoenix">Phoenix</option> 
+              <option value="Raze">Raze</option> 
+              <option value="Reyna">Reyna</option> 
+              <option value="Sage">Sage</option>
+              <option value="Skye">Skye</option>
+              <option value="Sova">Sova</option>
+              <option value="Viper">Viper</option>
+              <option value="Yoru">Yoru</option>
+          </select>
+          </div>
+          <div class="images" id="Split">
+            <img class="icon" srcset="icons/Split.jpg" width="80px"/>
+            <select id="AgentSelect" id="SplitAgentSelect"> 
+              <option value="Astra">Astra</option> 
+              <option value="Breach">Breach</option> 
+              <option value="Brimstone">Brimstone</option> 
+              <option value="Chamber">Chamber</option>
+              <option value="Cypher">Cypher</option> 
+              <option value="Fade">Fade</option> 
+              <option value="Gekko">Gekko</option> 
+              <option value="Harbor">Harbor</option> 
+              <option value="Jett">Jett</option> 
+              <option value="KAY/O">KAY/O</option> 
+              <option value="Killjoy">Killjoy</option> 
+              <option value="Neon">Neon</option>
+              <option value="Omen">Omen</option> 
+              <option value="Phoenix">Phoenix</option> 
+              <option value="Raze">Raze</option> 
+              <option value="Reyna">Reyna</option> 
+              <option value="Sage">Sage</option>
+              <option value="Skye">Skye</option>
+              <option value="Sova">Sova</option>
+              <option value="Viper">Viper</option>
+              <option value="Yoru">Yoru</option>
+          </select>
+          </div>
+          <div class="images" id="Ascent">
+            <img class="icon" srcset="icons/Ascent.jpg" width="80px"/>
+            <select id="AgentSelect" id="AscentAgentSelect"> 
+              <option value="Astra">Astra</option> 
+              <option value="Breach">Breach</option> 
+              <option value="Brimstone">Brimstone</option> 
+              <option value="Chamber">Chamber</option>
+              <option value="Cypher">Cypher</option> 
+              <option value="Fade">Fade</option> 
+              <option value="Gekko">Gekko</option> 
+              <option value="Harbor">Harbor</option> 
+              <option value="Jett">Jett</option> 
+              <option value="KAY/O">KAY/O</option> 
+              <option value="Killjoy">Killjoy</option> 
+              <option value="Neon">Neon</option>
+              <option value="Omen">Omen</option> 
+              <option value="Phoenix">Phoenix</option> 
+              <option value="Raze">Raze</option> 
+              <option value="Reyna">Reyna</option> 
+              <option value="Sage">Sage</option>
+              <option value="Skye">Skye</option>
+              <option value="Sova">Sova</option>
+              <option value="Viper">Viper</option>
+              <option value="Yoru">Yoru</option>
+          </select>
+          </div>
+          <div class="images" id="Icebox">
+            <img class="icon" srcset="icons/Icebox.jpg" width="80px"/>
+            <select id="AgentSelect" id="IceboxAgentSelect"> 
+              <option value="Astra">Astra</option> 
+              <option value="Breach">Breach</option> 
+              <option value="Brimstone">Brimstone</option> 
+              <option value="Chamber">Chamber</option>
+              <option value="Cypher">Cypher</option> 
+              <option value="Fade">Fade</option> 
+              <option value="Gekko">Gekko</option> 
+              <option value="Harbor">Harbor</option> 
+              <option value="Jett">Jett</option> 
+              <option value="KAY/O">KAY/O</option> 
+              <option value="Killjoy">Killjoy</option> 
+              <option value="Neon">Neon</option>
+              <option value="Omen">Omen</option> 
+              <option value="Phoenix">Phoenix</option> 
+              <option value="Raze">Raze</option> 
+              <option value="Reyna">Reyna</option> 
+              <option value="Sage">Sage</option>
+              <option value="Skye">Skye</option>
+              <option value="Sova">Sova</option>
+              <option value="Viper">Viper</option>
+              <option value="Yoru">Yoru</option>
+          </select>
+          </div>
+          <div class="images" id="Breeze">
+            <img class="icon" srcset="icons/Breeze.jpg" width="80px"/>
+            <select id="AgentSelect" id="BreezeAgentSelect"> 
+              <option value="Astra">Astra</option> 
+              <option value="Breach">Breach</option> 
+              <option value="Brimstone">Brimstone</option> 
+              <option value="Chamber">Chamber</option>
+              <option value="Cypher">Cypher</option> 
+              <option value="Fade">Fade</option> 
+              <option value="Gekko">Gekko</option> 
+              <option value="Harbor">Harbor</option>
+              <option value="Jett">Jett</option> 
+              <option value="KAY/O">KAY/O</option> 
+              <option value="Killjoy">Killjoy</option> 
+              <option value="Neon">Neon</option>
+              <option value="Omen">Omen</option> 
+              <option value="Phoenix">Phoenix</option> 
+              <option value="Raze">Raze</option> 
+              <option value="Reyna">Reyna</option> 
+              <option value="Sage">Sage</option>
+              <option value="Skye">Skye</option>
+              <option value="Sova">Sova</option>
+              <option value="Viper">Viper</option>
+              <option value="Yoru">Yoru</option>
+          </select>
+          </div>
+          <div class="images" id="Fracture">
+            <img class="icon" srcset="icons/Fracture.jpg" width="80px"/>
+            <select id="AgentSelect" id="FractureAgentSelect"> 
+              <option value="Astra">Astra</option> 
+              <option value="Breach">Breach</option> 
+              <option value="Brimstone">Brimstone</option> 
+              <option value="Chamber">Chamber</option>
+              <option value="Cypher">Cypher</option> 
+              <option value="Fade">Fade</option> 
+              <option value="Gekko">Gekko</option> 
+              <option value="Harbor">Harbor</option> 
+              <option value="Jett">Jett</option> 
+              <option value="KAY/O">KAY/O</option> 
+              <option value="Killjoy">Killjoy</option> 
+              <option value="Neon">Neon</option>
+              <option value="Omen">Omen</option> 
+              <option value="Phoenix">Phoenix</option> 
+              <option value="Raze">Raze</option> 
+              <option value="Reyna">Reyna</option> 
+              <option value="Sage">Sage</option>
+              <option value="Skye">Skye</option>
+              <option value="Sova">Sova</option>
+              <option value="Viper">Viper</option>
+              <option value="Yoru">Yoru</option>
+          </select>
+          </div>
+          <div class="images" id="Pearl">
+            <img class="icon" srcset="icons/Pearl.jpg" width="80px"/>
+            <select id="AgentSelect" id="PearlAgentSelect"> 
+              <option value="Astra">Astra</option> 
+              <option value="Breach">Breach</option> 
+              <option value="Brimstone">Brimstone</option> 
+              <option value="Chamber">Chamber</option>
+              <option value="Cypher">Cypher</option> 
+              <option value="Fade">Fade</option> 
+              <option value="Gekko">Gekko</option> 
+              <option value="Harbor">Harbor</option> 
+              <option value="Jett">Jett</option> 
+              <option value="KAY/O">KAY/O</option> 
+              <option value="Killjoy">Killjoy</option> 
+              <option value="Neon">Neon</option>
+              <option value="Omen">Omen</option> 
+              <option value="Phoenix">Phoenix</option> 
+              <option value="Raze">Raze</option> 
+              <option value="Reyna">Reyna</option> 
+              <option value="Sage">Sage</option>
+              <option value="Skye">Skye</option>
+              <option value="Sova">Sova</option>
+              <option value="Viper">Viper</option>
+              <option value="Yoru">Yoru</option>
+          </select>
+          </div>
+          <div class="images" id="Lotus">
+            <img class="icon" srcset="icons/Lotus.jpg" width="80px"/>
+            <select id="AgentSelect" id="LotusAgentSelect"> 
+              <option value="Astra">Astra</option> 
+              <option value="Breach">Breach</option> 
+              <option value="Brimstone">Brimstone</option> 
+              <option value="Chamber">Chamber</option>
+              <option value="Cypher">Cypher</option> 
+              <option value="Fade">Fade</option> 
+              <option value="Gekko">Gekko</option> 
+              <option value="Harbor">Harbor</option> 
+              <option value="Jett">Jett</option> 
+              <option value="KAY/O">KAY/O</option> 
+              <option value="Killjoy">Killjoy</option> 
+              <option value="Neon">Neon</option>
+              <option value="Omen">Omen</option> 
+              <option value="Phoenix">Phoenix</option> 
+              <option value="Raze">Raze</option> 
+              <option value="Reyna">Reyna</option> 
+              <option value="Sage">Sage</option>
+              <option value="Skye">Skye</option>
+              <option value="Sova">Sova</option>
+              <option value="Viper">Viper</option>
+              <option value="Yoru">Yoru</option>
+          </select>
+          </div>
+        </div>
+      </aside>
     </div>
   </body>
   <script>
@@ -49,5 +294,10 @@
     document.getElementById('close-button').addEventListener('click', () => {
         window.ipcRender.send('window:close');
     });
+    const input = document.querySelector("input"),
+      number = document.querySelector(".number");
+      input.addEventListener("input", () => {
+        number.textContent = input.value;
+      });
   </script>
 </html>

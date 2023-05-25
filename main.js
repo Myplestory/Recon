@@ -8,8 +8,8 @@ let win;
 function createWindow() {
   // window creation
   win = new BrowserWindow({
-    width: 1280,
-    height: 720,
+    width: 320,
+    height: 400,
     autoHideMenuBar: true,
     backgroundColor: '#FFF',
     webPreferences: {
@@ -19,6 +19,7 @@ function createWindow() {
     },
     frame: false
   })
+  // opens index.html and gives it privilages
   win.loadFile('index.html')
   win.setBackgroundColor('#88b9dc')
   return win;
@@ -77,5 +78,19 @@ electronIpcMain.on('window:close', () => {
   // Now we can access the window variable
   win.close();
 });
+
+electronIpcMain.on('window:maximize', () => {
+  // Now we can access the window variable
+  if (minmaxstate === false){
+    win.maximize();
+    minmaxstate = true;
+  }
+  else{
+    win.unmaximize();
+    minmaxstate = false;
+  }
+});
+
+//electronIpcMain.handle()
 
 // 

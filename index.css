@@ -6,7 +6,7 @@ html, body {height: 100%; margin: 0;}
 
 body {
   font-family: "Segoe UI", sans-serif;
-  background: #1A2933;
+  background: #afccff;
   color: #FFF;
 }
 
@@ -25,7 +25,7 @@ p {
 body {
   border: 1px solid #48545c;
   overflow-y: hidden;
-}
+}  
 
 #titlebar {
   display: block;
@@ -37,6 +37,112 @@ body {
 .maximized #titlebar {
   width: 100%;
   padding: 0;
+}
+
+#delay {
+  position: absolute;
+  top: 75%;
+  left: 45%;
+  transform: translate(-50%,-50%);
+}
+#num {
+  position: absolute;
+  top: 40%;
+  left: 107%;
+  transform: translate(-50%,-50%);
+}
+#ms {
+  position: absolute;
+  top: 39%;
+  left: 125%;
+  transform: translate(-50%,-50%);
+}
+
+#maps{
+  position: absolute;
+  top: 8%;
+  left: 4%;
+}
+
+#Bind{
+  height: auto; 
+  width: auto; 
+  max-width: 100px; 
+  max-height: 100px;
+  padding: 5px;
+  float: left
+}
+
+#Haven{
+  height: auto; 
+  width: auto; 
+  max-width: 100px; 
+  max-height: 100px;
+  padding: 5px;
+  float: left
+}
+
+#Split{
+  height: auto; 
+  width: auto; 
+  max-width: 100px; 
+  max-height: 100px;
+  padding: 5px;
+  float: left
+}
+
+#Ascent{
+  height: auto; 
+  width: auto; 
+  max-width: 100px; 
+  max-height: 100px;
+  padding: 5px;
+  float: left
+}
+
+#Icebox{
+  height: auto; 
+  width: auto; 
+  max-width: 100px; 
+  max-height: 100px;
+  padding: 5px;
+  float: left
+}
+
+#Breeze{
+  height: auto; 
+  width: auto; 
+  max-width: 100px; 
+  max-height: 100px;
+  padding: 5px;
+  float: left
+}
+
+#Fracture{
+  height: auto; 
+  width: auto; 
+  max-width: 100px; 
+  max-height: 100px;
+  padding: 5px;
+  float: left
+}
+
+#Pearl{
+  height: auto; 
+  width: auto; 
+  max-width: 100px; 
+  max-height: 100px;
+  padding: 5px;
+  float: left
+}
+
+#Lotus{
+  height: auto; 
+  width: auto; 
+  max-width: 100px; 
+  max-height: 100px;
+  padding: 5px;
+  float: left
 }
 
 #main {
@@ -57,7 +163,7 @@ body {
 }
 
 #titlebar {
-  color: #2bcbd6;
+  color: #2f4446;
 }
 
 #titlebar #drag-region {

@@ -3,7 +3,7 @@ const contextBridge = require('electron').contextBridge;
 const ipcRenderer = require('electron').ipcRenderer;
 
 // White-listed channels.
-const ipc = {
+const windowapi = {
     'render': {
         // From render to main.
         'send': [
@@ -15,24 +15,28 @@ const ipc = {
         // From main to render.
         'receive': [],
         // From render to main and back again.
-        'sendReceive': []
+        'sendReceive': [],
     }
 };
 
-// Exposed protected methods in the render process.
+const userinput = {
+    clientconnection: () => ipcRenderer.invoke("clientcon")
+}
+
+// Exposed protected methods in main.js
 contextBridge.exposeInMainWorld(
     // Allowed 'ipcRenderer' methods.
     'ipcRender', {
         // From render to main.
         send: (channel, args) => {
-            let validChannels = ipc.render.send;
+            let validChannels = windowapi.render.send;
             if (validChannels.includes(channel)) {
                 ipcRenderer.send(channel, args);
             }
         },
         // From main to render.
         receive: (channel, listener) => {
-            let validChannels = ipc.render.receive;
+            let validChannels = windowapi.render.receive;
             if (validChannels.includes(channel)) {
                 // Deliberately strip event as it includes `sender`.
                 ipcRenderer.on(channel, (event, ...args) => listener(...args));
@@ -40,7 +44,7 @@ contextBridge.exposeInMainWorld(
         },
         // From render to main and back again.
         invoke: (channel, args) => {
-            let validChannels = ipc.render.sendReceive;
+            let validChannels = windowapi.render.sendReceive;
             if (validChannels.includes(channel)) {
                 return ipcRenderer.invoke(channel, args);
             }
