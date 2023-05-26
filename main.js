@@ -8,8 +8,8 @@ let win;
 function createWindow() {
   // window creation
   win = new BrowserWindow({
-    width: 320,
-    height: 400,
+    width: 990,
+    height: 576,
     autoHideMenuBar: true,
     backgroundColor: '#FFF',
     webPreferences: {

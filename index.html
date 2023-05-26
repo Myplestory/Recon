@@ -7,7 +7,7 @@
     <title></title>
     <link rel="stylesheet" href="index.css">
   </head>
-  <body>
+  <body onload="InitializeChoices()">
 
     <header id="titlebar">
       <div id="drag-region">
@@ -32,6 +32,9 @@
     </header>
     <div class="container">
       <aside>
+        <div id="delayspan">
+          <span id="delaytitle">Refresh Delay</span>
+        </div>
         <div id="delay">
           <div id="slider1">
             <span id="num" class="number">0</span>
@@ -39,241 +42,328 @@
             <input type="range" value="0"max="1000"/>
           </div>
         </div>
+        <div id="Scan">
+          <div id="ScanStart">
+            <button id="ScanStartButton" type="button" class="button glow-button" target="_blank" onclick="startScan();">Glow Button</button>
+          </div>
+        </div>
         <div id="maps">
           <div class="images" id="Bind">
-            <img class="icon" srcset="icons/Bind.jpg" width="80px"/>
-            <select id="AgentSelect" id="BindAgentSelect"> 
-                <option value="Astra">Astra</option> 
-                <option value="Breach">Breach</option> 
-                <option value="Brimstone">Brimstone</option> 
-                <option value="Chamber">Chamber</option>
-                <option value="Cypher">Cypher</option> 
-                <option value="Fade">Fade</option> 
-                <option value="Gekko">Gekko</option> 
-                <option value="Harbor">Harbor</option> 
-                <option value="Jett">Jett</option> 
-                <option value="KAY/O">KAY/O</option> 
-                <option value="Killjoy">Killjoy</option> 
-                <option value="Neon">Neon</option>
-                <option value="Omen">Omen</option> 
-                <option value="Phoenix">Phoenix</option> 
-                <option value="Raze">Raze</option> 
-                <option value="Reyna">Reyna</option> 
-                <option value="Sage">Sage</option>
-                <option value="Skye">Skye</option>
-                <option value="Sova">Sova</option>
-                <option value="Viper">Viper</option>
-                <option value="Yoru">Yoru</option>
-            </select>
+            <div class="image">
+              <img class="icon" srcset="icons/Bind.jpg" width="100px"/>
+            </div>
+            <div class="dropdown" id="BindDropdown">
+              <div class="select">
+                <span class="selected">Astra</span>
+                <div class="caret"></div>
+              </div>
+              <ul class="menu">
+                <li class="active">Astra</li>
+                <li>Breach</li>
+                <li>Brimstone</li>
+                <li>Chamber</li>
+                <li>Cypher</li>
+                <li>Fade</li>
+                <li>Gekko</li>
+                <li>Harbor</li>
+                <li>Jett</li>
+                <li>KAY/O</li>
+                <li>Killjoy</li>
+                <li>Neon</li>
+                <li>Omen</li>
+                <li>Phoenix</li>
+                <li>Raze</li>
+                <li>Reyna</li>
+                <li>Sage</li>
+                <li>Skye</li>
+                <li>Sova</li>
+                <li>Viper</li>
+                <li>Yoru</li>
+              </ul>
+            </div>
           </div>
-          <div class="images" id="Haven">
-            <img class="icon" srcset="icons/Haven.jpg" width="80px"/>
-            <select id="AgentSelect" id="HavenAgentSelect"> 
-              <option value="Astra">Astra</option> 
-              <option value="Breach">Breach</option> 
-              <option value="Brimstone">Brimstone</option> 
-              <option value="Chamber">Chamber</option>
-              <option value="Cypher">Cypher</option> 
-              <option value="Fade">Fade</option> 
-              <option value="Gekko">Gekko</option> 
-              <option value="Harbor">Harbor</option> 
-              <option value="Jett">Jett</option> 
-              <option value="KAY/O">KAY/O</option> 
-              <option value="Killjoy">Killjoy</option> 
-              <option value="Neon">Neon</option>
-              <option value="Omen">Omen</option> 
-              <option value="Phoenix">Phoenix</option> 
-              <option value="Raze">Raze</option> 
-              <option value="Reyna">Reyna</option> 
-              <option value="Sage">Sage</option>
-              <option value="Skye">Skye</option>
-              <option value="Sova">Sova</option>
-              <option value="Viper">Viper</option>
-              <option value="Yoru">Yoru</option>
-          </select>
+          <div class="permap" id="Haven">
+            <div class="image">
+              <img class="icon" srcset="icons/Haven.jpg" width="100px"/>
+            </div>
+            <div class="dropdown" id="HavenDropdown">
+              <div class="select">
+                <span class="selected">Astra</span>
+                <div class="caret"></div>
+              </div>
+              <ul class="menu">
+                <li class="active">Astra</li>
+                <li>Breach</li>
+                <li>Brimstone</li>
+                <li>Chamber</li>
+                <li>Cypher</li>
+                <li>Fade</li>
+                <li>Gekko</li>
+                <li>Harbor</li>
+                <li>Jett</li>
+                <li>KAY/O</li>
+                <li>Killjoy</li>
+                <li>Neon</li>
+                <li>Omen</li>
+                <li>Phoenix</li>
+                <li>Raze</li>
+                <li>Reyna</li>
+                <li>Sage</li>
+                <li>Skye</li>
+                <li>Sova</li>
+                <li>Viper</li>
+                <li>Yoru</li>
+              </ul>
+            </div>
           </div>
-          <div class="images" id="Split">
-            <img class="icon" srcset="icons/Split.jpg" width="80px"/>
-            <select id="AgentSelect" id="SplitAgentSelect"> 
-              <option value="Astra">Astra</option> 
-              <option value="Breach">Breach</option> 
-              <option value="Brimstone">Brimstone</option> 
-              <option value="Chamber">Chamber</option>
-              <option value="Cypher">Cypher</option> 
-              <option value="Fade">Fade</option> 
-              <option value="Gekko">Gekko</option> 
-              <option value="Harbor">Harbor</option> 
-              <option value="Jett">Jett</option> 
-              <option value="KAY/O">KAY/O</option> 
-              <option value="Killjoy">Killjoy</option> 
-              <option value="Neon">Neon</option>
-              <option value="Omen">Omen</option> 
-              <option value="Phoenix">Phoenix</option> 
-              <option value="Raze">Raze</option> 
-              <option value="Reyna">Reyna</option> 
-              <option value="Sage">Sage</option>
-              <option value="Skye">Skye</option>
-              <option value="Sova">Sova</option>
-              <option value="Viper">Viper</option>
-              <option value="Yoru">Yoru</option>
-          </select>
+          <div class="permap" id="Split">
+            <div class="image">
+              <img class="icon" srcset="icons/Split.jpg" width="100px"/>
+            </div>
+            <div class="dropdown" id="SplitDropdown">
+              <div class="select">
+                <span class="selected">Astra</span>
+                <div class="caret"></div>
+              </div>
+              <ul class="menu">
+                <li class="active">Astra</li>
+                <li>Breach</li>
+                <li>Brimstone</li>
+                <li>Chamber</li>
+                <li>Cypher</li>
+                <li>Fade</li>
+                <li>Gekko</li>
+                <li>Harbor</li>
+                <li>Jett</li>
+                <li>KAY/O</li>
+                <li>Killjoy</li>
+                <li>Neon</li>
+                <li>Omen</li>
+                <li>Phoenix</li>
+                <li>Raze</li>
+                <li>Reyna</li>
+                <li>Sage</li>
+                <li>Skye</li>
+                <li>Sova</li>
+                <li>Viper</li>
+                <li>Yoru</li>
+              </ul>
+            </div>
           </div>
-          <div class="images" id="Ascent">
-            <img class="icon" srcset="icons/Ascent.jpg" width="80px"/>
-            <select id="AgentSelect" id="AscentAgentSelect"> 
-              <option value="Astra">Astra</option> 
-              <option value="Breach">Breach</option> 
-              <option value="Brimstone">Brimstone</option> 
-              <option value="Chamber">Chamber</option>
-              <option value="Cypher">Cypher</option> 
-              <option value="Fade">Fade</option> 
-              <option value="Gekko">Gekko</option> 
-              <option value="Harbor">Harbor</option> 
-              <option value="Jett">Jett</option> 
-              <option value="KAY/O">KAY/O</option> 
-              <option value="Killjoy">Killjoy</option> 
-              <option value="Neon">Neon</option>
-              <option value="Omen">Omen</option> 
-              <option value="Phoenix">Phoenix</option> 
-              <option value="Raze">Raze</option> 
-              <option value="Reyna">Reyna</option> 
-              <option value="Sage">Sage</option>
-              <option value="Skye">Skye</option>
-              <option value="Sova">Sova</option>
-              <option value="Viper">Viper</option>
-              <option value="Yoru">Yoru</option>
-          </select>
+          <div class="permap" id="Ascent">
+            <div class="image">
+              <img class="icon" srcset="icons/Ascent.jpg" width="100px"/>
+            </div>
+            <div class="dropdown" id="AscentDropdown">
+              <div class="select">
+                <span class="selected">Astra</span>
+                <div class="caret"></div>
+              </div>
+              <ul class="menu">
+                <li class="active">Astra</li>
+                <li>Breach</li>
+                <li>Brimstone</li>
+                <li>Chamber</li>
+                <li>Cypher</li>
+                <li>Fade</li>
+                <li>Gekko</li>
+                <li>Harbor</li>
+                <li>Jett</li>
+                <li>KAY/O</li>
+                <li>Killjoy</li>
+                <li>Neon</li>
+                <li>Omen</li>
+                <li>Phoenix</li>
+                <li>Raze</li>
+                <li>Reyna</li>
+                <li>Sage</li>
+                <li>Skye</li>
+                <li>Sova</li>
+                <li>Viper</li>
+                <li>Yoru</li>
+              </ul>
+            </div>
           </div>
-          <div class="images" id="Icebox">
-            <img class="icon" srcset="icons/Icebox.jpg" width="80px"/>
-            <select id="AgentSelect" id="IceboxAgentSelect"> 
-              <option value="Astra">Astra</option> 
-              <option value="Breach">Breach</option> 
-              <option value="Brimstone">Brimstone</option> 
-              <option value="Chamber">Chamber</option>
-              <option value="Cypher">Cypher</option> 
-              <option value="Fade">Fade</option> 
-              <option value="Gekko">Gekko</option> 
-              <option value="Harbor">Harbor</option> 
-              <option value="Jett">Jett</option> 
-              <option value="KAY/O">KAY/O</option> 
-              <option value="Killjoy">Killjoy</option> 
-              <option value="Neon">Neon</option>
-              <option value="Omen">Omen</option> 
-              <option value="Phoenix">Phoenix</option> 
-              <option value="Raze">Raze</option> 
-              <option value="Reyna">Reyna</option> 
-              <option value="Sage">Sage</option>
-              <option value="Skye">Skye</option>
-              <option value="Sova">Sova</option>
-              <option value="Viper">Viper</option>
-              <option value="Yoru">Yoru</option>
-          </select>
+          <div class="permap" id="Icebox">
+            <div class="image">
+              <img class="icon" srcset="icons/Icebox.jpg" width="100px"/>
+            </div>
+            <div class="dropdown" id="IceboxDropdown">
+              <div class="select">
+                <span class="selected">Astra</span>
+                <div class="caret"></div>
+              </div>
+              <ul class="menu">
+                <li class="active">Astra</li>
+                <li>Breach</li>
+                <li>Brimstone</li>
+                <li>Chamber</li>
+                <li>Cypher</li>
+                <li>Fade</li>
+                <li>Gekko</li>
+                <li>Harbor</li>
+                <li>Jett</li>
+                <li>KAY/O</li>
+                <li>Killjoy</li>
+                <li>Neon</li>
+                <li>Omen</li>
+                <li>Phoenix</li>
+                <li>Raze</li>
+                <li>Reyna</li>
+                <li>Sage</li>
+                <li>Skye</li>
+                <li>Sova</li>
+                <li>Viper</li>
+                <li>Yoru</li>
+              </ul>
+            </div>
           </div>
-          <div class="images" id="Breeze">
-            <img class="icon" srcset="icons/Breeze.jpg" width="80px"/>
-            <select id="AgentSelect" id="BreezeAgentSelect"> 
-              <option value="Astra">Astra</option> 
-              <option value="Breach">Breach</option> 
-              <option value="Brimstone">Brimstone</option> 
-              <option value="Chamber">Chamber</option>
-              <option value="Cypher">Cypher</option> 
-              <option value="Fade">Fade</option> 
-              <option value="Gekko">Gekko</option> 
-              <option value="Harbor">Harbor</option>
-              <option value="Jett">Jett</option> 
-              <option value="KAY/O">KAY/O</option> 
-              <option value="Killjoy">Killjoy</option> 
-              <option value="Neon">Neon</option>
-              <option value="Omen">Omen</option> 
-              <option value="Phoenix">Phoenix</option> 
-              <option value="Raze">Raze</option> 
-              <option value="Reyna">Reyna</option> 
-              <option value="Sage">Sage</option>
-              <option value="Skye">Skye</option>
-              <option value="Sova">Sova</option>
-              <option value="Viper">Viper</option>
-              <option value="Yoru">Yoru</option>
-          </select>
+          <div class="permap" id="Breeze">
+            <div class="image">
+              <img class="icon" srcset="icons/Breeze.jpg" width="100px"/>
+            </div>
+            <div class="dropdown" id="BreezeDropdown">
+              <div class="select">
+                <span class="selected">Astra</span>
+                <div class="caret"></div>
+              </div>
+              <ul class="menu">
+                <li class="active">Astra</li>
+                <li>Breach</li>
+                <li>Brimstone</li>
+                <li>Chamber</li>
+                <li>Cypher</li>
+                <li>Fade</li>
+                <li>Gekko</li>
+                <li>Harbor</li>
+                <li>Jett</li>
+                <li>KAY/O</li>
+                <li>Killjoy</li>
+                <li>Neon</li>
+                <li>Omen</li>
+                <li>Phoenix</li>
+                <li>Raze</li>
+                <li>Reyna</li>
+                <li>Sage</li>
+                <li>Skye</li>
+                <li>Sova</li>
+                <li>Viper</li>
+                <li>Yoru</li>
+              </ul>
+            </div>
           </div>
-          <div class="images" id="Fracture">
-            <img class="icon" srcset="icons/Fracture.jpg" width="80px"/>
-            <select id="AgentSelect" id="FractureAgentSelect"> 
-              <option value="Astra">Astra</option> 
-              <option value="Breach">Breach</option> 
-              <option value="Brimstone">Brimstone</option> 
-              <option value="Chamber">Chamber</option>
-              <option value="Cypher">Cypher</option> 
-              <option value="Fade">Fade</option> 
-              <option value="Gekko">Gekko</option> 
-              <option value="Harbor">Harbor</option> 
-              <option value="Jett">Jett</option> 
-              <option value="KAY/O">KAY/O</option> 
-              <option value="Killjoy">Killjoy</option> 
-              <option value="Neon">Neon</option>
-              <option value="Omen">Omen</option> 
-              <option value="Phoenix">Phoenix</option> 
-              <option value="Raze">Raze</option> 
-              <option value="Reyna">Reyna</option> 
-              <option value="Sage">Sage</option>
-              <option value="Skye">Skye</option>
-              <option value="Sova">Sova</option>
-              <option value="Viper">Viper</option>
-              <option value="Yoru">Yoru</option>
-          </select>
+          <div class="permap" id="Fracture">
+            <div class="image">
+              <img class="icon" srcset="icons/Fracture.jpg" width="100px"/>
+            </div>
+            <div class="dropdown" id="FractureDropdown">
+              <div class="select">
+                <span class="selected">Astra</span>
+                <div class="caret"></div>
+              </div>
+              <ul class="menu">
+                <li class="active">Astra</li>
+                <li>Breach</li>
+                <li>Brimstone</li>
+                <li>Chamber</li>
+                <li>Cypher</li>
+                <li>Fade</li>
+                <li>Gekko</li>
+                <li>Harbor</li>
+                <li>Jett</li>
+                <li>KAY/O</li>
+                <li>Killjoy</li>
+                <li>Neon</li>
+                <li>Omen</li>
+                <li>Phoenix</li>
+                <li>Raze</li>
+                <li>Reyna</li>
+                <li>Sage</li>
+                <li>Skye</li>
+                <li>Sova</li>
+                <li>Viper</li>
+                <li>Yoru</li>
+              </ul>
+            </div>
           </div>
-          <div class="images" id="Pearl">
-            <img class="icon" srcset="icons/Pearl.jpg" width="80px"/>
-            <select id="AgentSelect" id="PearlAgentSelect"> 
-              <option value="Astra">Astra</option> 
-              <option value="Breach">Breach</option> 
-              <option value="Brimstone">Brimstone</option> 
-              <option value="Chamber">Chamber</option>
-              <option value="Cypher">Cypher</option> 
-              <option value="Fade">Fade</option> 
-              <option value="Gekko">Gekko</option> 
-              <option value="Harbor">Harbor</option> 
-              <option value="Jett">Jett</option> 
-              <option value="KAY/O">KAY/O</option> 
-              <option value="Killjoy">Killjoy</option> 
-              <option value="Neon">Neon</option>
-              <option value="Omen">Omen</option> 
-              <option value="Phoenix">Phoenix</option> 
-              <option value="Raze">Raze</option> 
-              <option value="Reyna">Reyna</option> 
-              <option value="Sage">Sage</option>
-              <option value="Skye">Skye</option>
-              <option value="Sova">Sova</option>
-              <option value="Viper">Viper</option>
-              <option value="Yoru">Yoru</option>
-          </select>
+          <div class="permap" id="Pearl">
+            <div class="image">
+              <img class="icon" srcset="icons/Pearl.jpg" width="100px"/>
+            </div>
+            <div class="dropdown" id="PearlDropdown">
+              <div class="select">
+                <span class="selected">Astra</span>
+                <div class="caret"></div>
+              </div>
+              <ul class="menu">
+                <li class="active">Astra</li>
+                <li>Breach</li>
+                <li>Brimstone</li>
+                <li>Chamber</li>
+                <li>Cypher</li>
+                <li>Fade</li>
+                <li>Gekko</li>
+                <li>Harbor</li>
+                <li>Jett</li>
+                <li>KAY/O</li>
+                <li>Killjoy</li>
+                <li>Neon</li>
+                <li>Omen</li>
+                <li>Phoenix</li>
+                <li>Raze</li>
+                <li>Reyna</li>
+                <li>Sage</li>
+                <li>Skye</li>
+                <li>Sova</li>
+                <li>Viper</li>
+                <li>Yoru</li>
+              </ul>
+            </div>
           </div>
-          <div class="images" id="Lotus">
-            <img class="icon" srcset="icons/Lotus.jpg" width="80px"/>
-            <select id="AgentSelect" id="LotusAgentSelect"> 
-              <option value="Astra">Astra</option> 
-              <option value="Breach">Breach</option> 
-              <option value="Brimstone">Brimstone</option> 
-              <option value="Chamber">Chamber</option>
-              <option value="Cypher">Cypher</option> 
-              <option value="Fade">Fade</option> 
-              <option value="Gekko">Gekko</option> 
-              <option value="Harbor">Harbor</option> 
-              <option value="Jett">Jett</option> 
-              <option value="KAY/O">KAY/O</option> 
-              <option value="Killjoy">Killjoy</option> 
-              <option value="Neon">Neon</option>
-              <option value="Omen">Omen</option> 
-              <option value="Phoenix">Phoenix</option> 
-              <option value="Raze">Raze</option> 
-              <option value="Reyna">Reyna</option> 
-              <option value="Sage">Sage</option>
-              <option value="Skye">Skye</option>
-              <option value="Sova">Sova</option>
-              <option value="Viper">Viper</option>
-              <option value="Yoru">Yoru</option>
-          </select>
+          <div class="permap" id="Lotus">
+            <div class="image">
+              <img class="icon" srcset="icons/Lotus.jpg" width="100px"/>
+            </div>
+            <div class="dropdown" id="LotusDropdown">
+              <div class="select">
+                <span class="selected">Astra</span>
+                <div class="caret"></div>
+              </div>
+              <ul class="menu">
+                <li class="active">Astra</li>
+                <li>Breach</li>
+                <li>Brimstone</li>
+                <li>Chamber</li>
+                <li>Cypher</li>
+                <li>Fade</li>
+                <li>Gekko</li>
+                <li>Harbor</li>
+                <li>Jett</li>
+                <li>KAY/O</li>
+                <li>Killjoy</li>
+                <li>Neon</li>
+                <li>Omen</li>
+                <li>Phoenix</li>
+                <li>Raze</li>
+                <li>Reyna</li>
+                <li>Sage</li>
+                <li>Skye</li>
+                <li>Sova</li>
+                <li>Viper</li>
+                <li>Yoru</li>
+              </ul>
+            </div>
           </div>
+        </div>
+        <div id="indicator">
+          <div class="panel">
+            <div class="status-light sl-red"></div>
+            <div class="status-light sl-green"></div>
+            <div class="status-light sl-blue"></div>
+          </div>
+        </div>
+        <div id="logs">
+          <textarea id="logprint" rows="20" cols="55" autofocus readonly wrap="soft" style="background-color:#8eafe7"></textarea>
         </div>
       </aside>
     </div>
@@ -299,5 +389,90 @@
       input.addEventListener("input", () => {
         number.textContent = input.value;
       });
+    const dropdowns = document.querySelectorAll('.dropdown');
+    //loop through all dropdown elements
+    dropdowns.forEach(dropdown => {
+      // get inner elements from each dropdown
+      const select = dropdown.querySelector('.select');
+      const caret = dropdown.querySelector('.caret');
+      const menu = dropdown.querySelector('.menu');
+      const options = dropdown.querySelectorAll('.menu li')
+      const selected = dropdown.querySelector('.selected');
+      // we are using this method in order to have multiple dropdowns on the page work
+      // click event to selected elements
+      select.addEventListener('click',() => {
+        // add the clicked select styles to the select element
+        select.classList.toggle('select-clicked');
+        // add the rotate styles to the caret element
+        caret.classList.toggle('caret-rotate');
+        // add the open styles to the menu element
+        menu.classList.toggle('menu-open');
+      });
+      // Loop through all option elems
+      options.forEach(option => {
+        // click event to option element
+        option.addEventListener('click',() => {
+          // change selected inner text to clicked option inner text
+          selected.innerText = option.innerText;
+          // Add the clicked select styles to the select element
+          select.classList.remove('select-clicked');
+          // Add the rotate styles to the caret elem
+          caret.classList.remove('caret-rotate');
+          // Add the open styles to the menu elem
+          menu.classList.remove('menu-open');
+          // Remove active class from all option elems
+          options.forEach(option => {
+            option.classList.remove('active');
+          });
+          // Add active class to clicked option element
+          option.classList.add('active');
+          // Repopulating objects
+          const BindPick = document.getElementById('BindDropdown');
+          console.log(BindPick.getElementsByClassName('selected').innerHTML);
+          choices["Bind"] = BindPick.getElementsByClassName('selected').innerHTML;
+          const HavenPick = document.querySelector('.HavenDropdown');
+          choices["Haven"] = HavenPick.querySelector('.selected').innerHTML;
+          const SplitPick = document.querySelector('.SplitDropdown');
+          choices["Split"] = SplitPick.querySelector('.selected').innerHTML;
+          const AscentPick = document.querySelector('.AscentDropdown');
+          choices["Ascent"] = AscentPick.querySelector('.selected').innerHTML;
+          const IceboxPick = document.querySelector('.IceboxDropdown');
+          choices["Icebox"] = IceboxPick.querySelector('.selected').innerHTML;
+          const BreezePick = document.querySelector('.BreezeDropdown');
+          choices["Breeze"] = BreezePick.querySelector('.selected').innerHTML;
+          const FracturePick = document.querySelector('.FractureDropdown');
+          choices["Fracture"] = FracturePick.querySelector('.selected').innerHTML;
+          const PearlPick = document.querySelector('.PearlDropdown');
+          choices["Pearl"] = PearlPick.querySelector('.selected').innerHTML;
+          const LotusPick = document.querySelector('.LotusDropdown');
+          choices["Lotus"] = LotusPick.querySelector('.selected').innerHTML;
+        });
+      });
+    });
+    // Logprinting
+    //var logging = document.getElementById('logs');
+    //setInterval(function(){
+    //  logging.value+="\ntest";},2000
+   // );
+    // onloading
+    const choices = {}
+    const maporder = ["Bind","Haven","Split","Ascent","Icebox","Breeze","Fracture","Pearl","Lotus"]
+    InitializeChoices = () => {
+      let x = 0;
+      dropdowns.forEach(dropdown => {
+        const picked = dropdown.querySelector('.selected')
+        console.log(picked.innerHTML)
+        choices[maporder[x]] = picked.innerHTML;
+        x++;
+      })
+      console.log(choices)
+    };
+    // Starting Scan
+      //document.getElementById("ScanStartButton").onclick = function(){
+        //options.forEach(option => {
+
+        //})
+     // };
+    //if()
   </script>
 </html>

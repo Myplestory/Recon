@@ -32,6 +32,7 @@ body {
   position: fixed;
   height: 32px;
   width: calc(100% - 2px);
+  color: #48545c;
 }
 
 .maximized #titlebar {
@@ -39,22 +40,36 @@ body {
   padding: 0;
 }
 
+/* SLIDER CONTROLS */ 
 #delay {
   position: absolute;
-  top: 75%;
-  left: 45%;
+  top: 50%;
+  left: 22%;
   transform: translate(-50%,-50%);
+}
+#delayspan{
+  position: absolute;
+  top: 45%;
+  left: 22%;
+  transform: translate(-50%,-50%);
+}
+#delaytitle{
+  position: absolute;
+  top: 10%;
+  left: 70%;
+  transform: translate(-50%,-50%);
+  white-space: nowrap;
 }
 #num {
   position: absolute;
-  top: 40%;
-  left: 107%;
+  top: 39%;
+  left: 115%;
   transform: translate(-50%,-50%);
 }
 #ms {
   position: absolute;
   top: 39%;
-  left: 125%;
+  left: 140%;
   transform: translate(-50%,-50%);
 }
 
@@ -62,6 +77,114 @@ body {
   position: absolute;
   top: 8%;
   left: 4%;
+}
+
+/* MAP SELECTION CONTROLS */
+.permap{
+  position: relative;
+}
+.image{
+  display: block;
+  top: 8%;
+  left: 15%;
+}
+
+.dropdown{
+  min-width: 100px;
+  max-height: 20px;
+  position: absolute;
+  margin: 1.5em;
+  top: 80%;
+  left: -18px;
+}
+
+.dropdown *{
+  box-sizing: border-box;
+}
+
+.select{
+  background: #2a2f3b;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px #2a2f3b solid;
+  border-radius: 0.5em;
+  padding: 1em;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+/* clicked styles */
+.select-clicked{
+  border: 2px #26489a solid;
+  box-shadow: 0 0 0.8em #26489a;
+}
+
+.select:hover{
+  background: #323741;
+}
+
+.caret{
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #fff;
+  transition: 0.3s;
+}
+/* rotate styles */
+.caret-rotate{
+  transform: rotate(180deg);
+}
+
+#menu li:hover ul{
+  max-height: 250px;
+  overflow-y:auto;
+  overflow: hidden;
+}
+
+#menu li ul{
+  overflow: hidden;
+}
+
+.menu {
+  list-style: none;
+  padding: 0.2em 0.5em;
+  background: #323741;
+  border: 1px #363a43 solid;
+  box-shadow: 0 0.5em 1em rgba(0,0,0,0.2);
+  border-radius: 0.5em;
+  color: #9fa5b5;
+  position: absolute;
+  top: 3em;
+  left: 50%;
+  width: 100%;
+  height: 200px;
+  transform: translateX(-50%);
+  opacity: 0;
+  display: none;
+  transition: 0.2;
+  z-index: 1;
+  overflow-y:auto;
+}
+.menu li {
+  padding: 0.7em 0.5em;
+  margin: 0.2em 0;
+  border-radius: 0.5em;
+  cursor: pointer;
+}
+/* Active styles for dropdown */
+.active{
+  background: #23242a;
+}
+/* Open styles */
+.menu-open{
+  display: block;
+  opacity: 1;
+  overflow-y: auto;
+}
+.menu-open::-webkit-scrollbar {
+  display: none;
 }
 
 #Bind{
@@ -72,6 +195,9 @@ body {
   padding: 5px;
   float: left
 }
+.BindDropdown{
+  padding: 0px;
+}
 
 #Haven{
   height: auto; 
@@ -81,6 +207,9 @@ body {
   padding: 5px;
   float: left
 }
+.HavenDropdown{
+  padding: 0px;
+}
 
 #Split{
   height: auto; 
@@ -89,6 +218,9 @@ body {
   max-height: 100px;
   padding: 5px;
   float: left
+}
+.SplitDropdown{
+  padding: 0px;
 }
 
 #Ascent{
@@ -145,6 +277,14 @@ body {
   float: left
 }
 
+#indicator {
+  position: relative; 
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  border: 1px solid #dddddd;
+}
+
 #main {
   height: calc(100% - 32px);
   margin-top: 32px;
@@ -160,10 +300,12 @@ body {
   width: 100%;
   height: 100%;
   -webkit-app-region: drag;
+  color: #48545c;
 }
 
 #titlebar {
   color: #2f4446;
+  background: #48545c;
 }
 
 #titlebar #drag-region {
@@ -179,6 +321,7 @@ body {
   overflow: hidden;
   font-family: "Segoe UI", sans-serif;
   font-size: 12px;
+  color: #FFF;
 }
 
 .maximized #window-title {
@@ -266,4 +409,82 @@ body {
 
 .maximized #max-button {
   display: none;
+}
+
+/* STATUS LIGHT */
+
+.status-light {
+  margin: 5px 10px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  float: left;
+}
+
+.sl-red {
+    background-color: #940;
+    box-shadow: #225 0 -1px 7px 1px, inset #600 0 -1px 9px, #F00 0 0px 8px;
+}
+
+.sl-red-bold {
+    background-color: #C22;
+    box-shadow: #338 0 -1px 7px 1px, inset #600 0 -1px 9px, #F00 0 0px 8px;
+}
+
+.sl-green {
+    background-color: #690;
+    box-shadow: #225 0 -1px 7px 1px, inset #460 0 -1px 9px, #7D0 0 0px 8px;
+}
+
+.sl-green-faded {
+    background-color: desaturate(#690, 30%);
+    box-shadow: #225 0 -1px 7px 1px, inset #460 0 -1px 9px, #7D0 0 0px 8px;
+}
+
+.sl-blue {
+    background-color: #4AB;
+    box-shadow: #225 0 -1px 7px 1px, inset #006 0 -1px 9px, #06F 0 0px 8px;
+}
+
+.sl-blue-faded {
+    background-color: desaturate(#4AB, 30%);
+    box-shadow: #225 0 -1px 7px 1px, inset #339 0 -1px 9px, #28F 0 0px 4px;
+}
+
+.panel {
+    overflow: hidden;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #afccff;
+}
+
+#indicator{
+  position: absolute;
+  left: 10px;
+  top: 90%;
+  max-height: 50px;
+  background-color: #afccff;
+  border: #afccff;
+}
+
+/* LOGGING AND PRINTING */
+#logs{
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  height: 50%;
+  width: 50%;
+  max-height: 50%;
+  max-width: 50%;
+}
+.logprint{
+  position: absolute;
+  height: 50%;
+  width: 50%;
+  max-height: 50%;
+  max-width: 50%;
+  border: #788aaa;
+  transform: translateX(10%);
+  transform: translateY(-10%);
 }
