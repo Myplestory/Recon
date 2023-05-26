@@ -19,9 +19,7 @@ const windowapi = {
     }
 };
 
-const userinput = {
-    clientconnection: () => ipcRenderer.invoke("clientcon")
-}
+
 
 // Exposed protected methods in main.js
 contextBridge.exposeInMainWorld(

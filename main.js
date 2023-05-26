@@ -1,6 +1,7 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const electronIpcMain = require('electron').ipcMain;
+const {PythonShell} = require('python-shell');
 
 let win;
 
@@ -91,6 +92,17 @@ electronIpcMain.on('window:maximize', () => {
   }
 });
 
-//electronIpcMain.handle()
+//Run Locker script with posted json values
+electronIpcMain.on('Run-Locker-action', (event,arg) => {
+  function RunLocker(arg){
+    PythonShell.run("locker.py",null,function(err,results){
+        console.log(results)
+        console.log("Locker ran!")
+    });
+  };
+  // return some data to renderer process with mainprocess response id
+  event.sender.send('Run-Locker-response');
+});
+
 
 // 

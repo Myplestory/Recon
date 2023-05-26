@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"
     <title></title>
     <link rel="stylesheet" href="index.css">
+    <script src = "require.js"></script>
   </head>
   <body onload="InitializeChoices()">
 
@@ -38,13 +39,20 @@
         <div id="delay">
           <div id="slider1">
             <span id="num" class="number">0</span>
-            <span id="ms">ms</span>
-            <input type="range" value="0"max="1000"/>
+            <span id="ms">s</span>
+            <input type="range" value="0"max="5.0"/>
           </div>
         </div>
         <div id="Scan">
           <div id="ScanStart">
-            <button id="ScanStartButton" type="button" class="button glow-button" target="_blank" onclick="startScan();">Glow Button</button>
+            <i class="background"></i>
+            <button type="btn" id="startscan" onclick="ScanStart">Scan</button>
+          </div>
+        </div>
+        <div id="Suppress">
+          <div id="ScanEnd">
+            <i class="background"></i>
+            <button type="btn" id="endscan">Suppress</button>
           </div>
         </div>
         <div id="maps">
@@ -369,6 +377,11 @@
     </div>
   </body>
   <script>
+    /* Initializes neccessary objects/dependencies */
+    
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    /* Window controls */
     document.getElementById('min-button').addEventListener('click', () => {
         window.ipcRender.send('window:minimize');
     });
@@ -389,7 +402,6 @@
       input.addEventListener("input", () => {
         number.textContent = input.value;
       });
-    const dropdowns = document.querySelectorAll('.dropdown');
     //loop through all dropdown elements
     dropdowns.forEach(dropdown => {
       // get inner elements from each dropdown
@@ -449,11 +461,6 @@
         });
       });
     });
-    // Logprinting
-    //var logging = document.getElementById('logs');
-    //setInterval(function(){
-    //  logging.value+="\ntest";},2000
-   // );
     // onloading
     const choices = {}
     const maporder = ["Bind","Haven","Split","Ascent","Icebox","Breeze","Fracture","Pearl","Lotus"]
@@ -468,11 +475,14 @@
       console.log(choices)
     };
     // Starting Scan
-      //document.getElementById("ScanStartButton").onclick = function(){
-        //options.forEach(option => {
-
-        //})
-     // };
-    //if()
+    ScanStart = () => {
+      data = {}
+      const refdelay = document.getElementById('num').innerHTML;
+      console.log(refdelay);
+      ipcRender.on('Run-Locker-response', (event, arg) => {
+        console.log("ScanStartIPC!");
+      })
+      ipcRender.send('Run-Locker-action',data);
+    }
   </script>
 </html>

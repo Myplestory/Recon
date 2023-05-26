@@ -69,7 +69,7 @@ body {
 #ms {
   position: absolute;
   top: 39%;
-  left: 140%;
+  left: 130%;
   transform: translate(-50%,-50%);
 }
 
@@ -472,7 +472,7 @@ body {
 #logs{
   position: absolute;
   left: 50%;
-  top: 45%;
+  top: 40%;
   height: 50%;
   width: 50%;
   max-height: 50%;
@@ -487,4 +487,108 @@ body {
   border: #788aaa;
   transform: translateX(10%);
   transform: translateY(-10%);
+}
+
+/* SCAN BUTTON */
+#startscan{
+  position: absolute;
+  top: 75%;
+  left: 22%;
+  transform: translate(-50%,-50%);
+  width: 150px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  color: #fff;
+  font-size: 24px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  background: linear-gradient(90deg,#5bcedf, #f96161, #fc8f46, #36e494);
+  background-size: 400%;
+  border-radius: 30px;
+  z-index: 1;
+}
+#startscan:hover{
+  animation: animate 8s linear infinite;
+}
+#startscan:before{
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  background: linear-gradient(90deg,#5bcedf, #f96161, #fc8f46, #36e494);
+  background-size: 400px;
+  border-radius: 40px;
+  opacity: 0;
+  transition: 0.5s;
+}
+#startscan:hover:before{
+  filter: blur(10px);
+  opacity: 1;
+}
+
+@keyframes animate {
+  0%{
+      background-position: 0%;
+  }
+  100%{
+      background-position: 400%;
+  }
+}
+
+/* Suppress Scanning */
+#endscan{
+  position: absolute;
+  top: 60%;
+  left: 22%;
+  transform: translate(-50%,-50%);
+  width: 150px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  color: #fff;
+  font-size: 24px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  background: linear-gradient(90deg,#5bcedf, #f96161, #fc8f46, #36e494);
+  background-size: 400%;
+  border-radius: 30px;
+  z-index: 1;
+}
+#endscan:hover{
+  animation: animate 8s linear infinite;
+}
+#endscan:before{
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  background: linear-gradient(90deg,#5bcedf, #f96161, #fc8f46, #36e494);
+  background-size: 400px;
+  border-radius: 40px;
+  opacity: 0;
+  transition: 0.5s;
+}
+#endscan:hover:before{
+  filter: blur(10px);
+  opacity: 1;
+}
+
+@keyframes animate {
+  0%{
+      background-position: 0%;
+  }
+  100%{
+      background-position: 400%;
+  }
 }
