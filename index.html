@@ -54,7 +54,7 @@
             </div>
             <div class="dropdown" id="BindDropdown">
               <div class="select">
-                <span class="selected">Astra</span>
+                <span class="selected" id="BindPick">Astra</span>
                 <div class="caret"></div>
               </div>
               <ul class="menu">
@@ -88,7 +88,7 @@
             </div>
             <div class="dropdown" id="HavenDropdown">
               <div class="select">
-                <span class="selected">Astra</span>
+                <span class="selected" id="HavenPick">Astra</span>
                 <div class="caret"></div>
               </div>
               <ul class="menu">
@@ -122,7 +122,7 @@
             </div>
             <div class="dropdown" id="SplitDropdown">
               <div class="select">
-                <span class="selected">Astra</span>
+                <span class="selected" id="SplitPick">Astra</span>
                 <div class="caret"></div>
               </div>
               <ul class="menu">
@@ -156,7 +156,7 @@
             </div>
             <div class="dropdown" id="AscentDropdown">
               <div class="select">
-                <span class="selected">Astra</span>
+                <span class="selected" id="AscentPick">Astra</span>
                 <div class="caret"></div>
               </div>
               <ul class="menu">
@@ -190,7 +190,7 @@
             </div>
             <div class="dropdown" id="IceboxDropdown">
               <div class="select">
-                <span class="selected">Astra</span>
+                <span class="selected" id="IceboxPick">Astra</span>
                 <div class="caret"></div>
               </div>
               <ul class="menu">
@@ -224,7 +224,7 @@
             </div>
             <div class="dropdown" id="BreezeDropdown">
               <div class="select">
-                <span class="selected">Astra</span>
+                <span class="selected" id="BreezePick">Astra</span>
                 <div class="caret"></div>
               </div>
               <ul class="menu">
@@ -258,7 +258,7 @@
             </div>
             <div class="dropdown" id="FractureDropdown">
               <div class="select">
-                <span class="selected">Astra</span>
+                <span class="selected" id="FracturePick">Astra</span>
                 <div class="caret"></div>
               </div>
               <ul class="menu">
@@ -292,7 +292,7 @@
             </div>
             <div class="dropdown" id="PearlDropdown">
               <div class="select">
-                <span class="selected">Astra</span>
+                <span class="selected" id="PearlPick">Astra</span>
                 <div class="caret"></div>
               </div>
               <ul class="menu">
@@ -326,7 +326,7 @@
             </div>
             <div class="dropdown" id="LotusDropdown">
               <div class="select">
-                <span class="selected">Astra</span>
+                <span class="selected" id="LotusSelect">Astra</span>
                 <div class="caret"></div>
               </div>
               <ul class="menu">
@@ -426,26 +426,26 @@
           });
           // Add active class to clicked option element
           option.classList.add('active');
-          // Repopulating objects
-          const BindPick = document.getElementById('BindDropdown');
-          console.log(BindPick.getElementsByClassName('selected').innerHTML);
-          choices["Bind"] = BindPick.getElementsByClassName('selected').innerHTML;
-          const HavenPick = document.querySelector('.HavenDropdown');
-          choices["Haven"] = HavenPick.querySelector('.selected').innerHTML;
-          const SplitPick = document.querySelector('.SplitDropdown');
-          choices["Split"] = SplitPick.querySelector('.selected').innerHTML;
-          const AscentPick = document.querySelector('.AscentDropdown');
-          choices["Ascent"] = AscentPick.querySelector('.selected').innerHTML;
-          const IceboxPick = document.querySelector('.IceboxDropdown');
-          choices["Icebox"] = IceboxPick.querySelector('.selected').innerHTML;
-          const BreezePick = document.querySelector('.BreezeDropdown');
-          choices["Breeze"] = BreezePick.querySelector('.selected').innerHTML;
-          const FracturePick = document.querySelector('.FractureDropdown');
-          choices["Fracture"] = FracturePick.querySelector('.selected').innerHTML;
-          const PearlPick = document.querySelector('.PearlDropdown');
-          choices["Pearl"] = PearlPick.querySelector('.selected').innerHTML;
-          const LotusPick = document.querySelector('.LotusDropdown');
-          choices["Lotus"] = LotusPick.querySelector('.selected').innerHTML;
+          // Repopulating values in choices object
+          const BindPick = document.getElementById('BindPick');
+          choices["Bind"] = BindPick.innerHTML;
+          const HavenPick = document.getElementById('HavenPick');
+          choices["Haven"] = HavenPick.innerHTML;
+          const SplitPick = document.getElementById('SplitPick');
+          choices["Split"] = SplitPick.innerHTML;
+          const AscentPick = document.getElementById('AscentPick');
+          choices["Ascent"] = AscentPick.innerHTML;
+          const IceboxPick = document.getElementById('IceboxPick');
+          choices["Icebox"] = IceboxPick.innerHTML;
+          const BreezePick = document.getElementById('BreezePick');
+          choices["Breeze"] = BreezePick.innerHTML;
+          const FracturePick = document.getElementById('FracturePick');
+          choices["Fracture"] = FracturePick.innerHTML;
+          const PearlPick = document.getElementById('PearlPick');
+          choices["Pearl"] = PearlPick.innerHTML;
+          const LotusPick = document.getElementById('LotusSelect');
+          choices["Lotus"] = LotusPick.innerHTML;
+          console.log(choices)
         });
       });
     });
