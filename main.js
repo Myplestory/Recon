@@ -9,14 +9,14 @@ let win;
 function createWindow() {
   // window creation
   win = new BrowserWindow({
-    width: 990,
-    height: 576,
+    width: 1000,
+    height: 600,
     autoHideMenuBar: true,
     backgroundColor: '#FFF',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
-      nodeIntegration: true,
+      nodeIntegration: false,
     },
     frame: false
   })
@@ -93,16 +93,33 @@ electronIpcMain.on('window:maximize', () => {
 });
 
 //Run Locker script with posted json values
-electronIpcMain.on('Run-Locker-action', (event,arg) => {
-  function RunLocker(arg){
-    PythonShell.run("locker.py",null,function(err,results){
-        console.log(results)
-        console.log("Locker ran!")
-    });
-  };
-  // return some data to renderer process with mainprocess response id
-  event.sender.send('Run-Locker-response');
-});
+var pyproc;
+electronIpcMain.on('data-from-renderer', (event, data) => {
+  const jsonargs = data[0];
+  const rdelay = data[1];
+  const hdelay = data[2];
+  const ldelay = data[3];
+  console.log(jsonargs);
+  console.log(rdelay);
+  console.log(hdelay);
+  console.log(ldelay);
+  //Initialize args to pass to .py
+  let options = {
+    mode: 'text',
+    pythonOptions: ['-u'],
+    args: [
+      jsonargs,
+      rdelay,
+      hdelay,
+      ldelay,
+    ],
+  }
+  // Create py instance
+  var pyshell = new PythonShell('locker.py',options)
+  pyproc = pyshell.childProcess;
+})
 
-
-// 
+electronIpcMain.on('turn-off', (event) => {
+  pyproc.kill('SIGINT');
+  console.log("pyscript ended!");
+})

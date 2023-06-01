@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"
     <title></title>
     <link rel="stylesheet" href="index.css">
-    <script src = "require.js"></script>
+    <script></script>
   </head>
   <body onload="InitializeChoices()">
 
@@ -40,13 +40,33 @@
           <div id="slider1">
             <span id="num" class="number">0</span>
             <span id="ms">s</span>
-            <input type="range" value="0"max="5.0"/>
+            <input id="refdelay" type="range" value="0" step="0.1" min="0.0" max="5.0"/>
+          </div>
+        </div>
+        <div id="delayspan2">
+          <span id="delaytitle2">Hover Delay</span>
+        </div>
+        <div id="delay2">
+          <div id="slider2">
+            <span id="num2" class="number2">0</span>
+            <span id="ms2">s</span>
+            <input id="hoverdelay" type="range" value="0.0" step="0.1" min="0.0" max="10.0"/>
+          </div>
+        </div>
+        <div id="delayspan3">
+          <span id="delaytitle3">Lock Delay</span>
+        </div>
+        <div id="delay3">
+          <div id="slider3">
+            <span id="num3" class="number3">0</span>
+            <span id="ms3">s</span>
+            <input id="lockdelay" type="range" value="0.0" step="0.1" min="0.0" max="50.0"/>
           </div>
         </div>
         <div id="Scan">
           <div id="ScanStart">
             <i class="background"></i>
-            <button type="btn" id="startscan" onclick="ScanStart">Scan</button>
+            <button type="btn" id="startscan">Scan</button>
           </div>
         </div>
         <div id="Suppress">
@@ -376,31 +396,54 @@
       </aside>
     </div>
   </body>
+  <script src="require.js"></script>
   <script>
     /* Initializes neccessary objects/dependencies */
-    
     const dropdowns = document.querySelectorAll('.dropdown');
-    
     /* Window controls */
     document.getElementById('min-button').addEventListener('click', () => {
-        window.ipcRender.send('window:minimize');
+        window.ipcR.send('window:minimize');
     });
 
     document.getElementById('restore-button').addEventListener('click', () => {
-        window.ipcRender.send('window:restore');
+        window.ipcR.send('window:restore');
     });
 
     document.getElementById('max-button').addEventListener('click', () => {
-        window.ipcRender.send('window:maximize');
+        window.ipcR.send('window:maximize');
     });
 
     document.getElementById('close-button').addEventListener('click', () => {
-        window.ipcRender.send('window:close');
+        window.ipcR.send('window:close');
     });
-    const input = document.querySelector("input"),
+
+    // event handler when scanbutton is clicked
+    document.getElementById('startscan').addEventListener('click', () => {
+      const packed = JSON.stringify(choices);
+      const refreshdelay = document.getElementById("num").innerHTML;
+      const hoverdelay = document.getElementById("num2").innerHTML;
+      const lockdelay = document.getElementById("num3").innerHTML;
+      window.ipcR.scan([packed,refreshdelay,hoverdelay,lockdelay]);
+    });
+    document.getElementById('endscan').addEventListener('click', () => {
+      window.ipcR.endscan();
+    });
+
+    // slider event handlers
+    const input = document.getElementById("refdelay"),
       number = document.querySelector(".number");
       input.addEventListener("input", () => {
         number.textContent = input.value;
+      });
+    const input2 = document.getElementById("hoverdelay"),
+      number2 = document.querySelector(".number2");
+      input2.addEventListener("input", () => {
+        number2.textContent = input2.value;
+      });
+    const input3 = document.getElementById("lockdelay"),
+      number3 = document.querySelector(".number3");
+      input3.addEventListener("input", () => {
+        number3.textContent = input3.value;
       });
     //loop through all dropdown elements
     dropdowns.forEach(dropdown => {
@@ -440,30 +483,30 @@
           option.classList.add('active');
           // Repopulating values in choices object
           const BindPick = document.getElementById('BindPick');
-          choices["Bind"] = BindPick.innerHTML;
+          choices["duality"] = BindPick.innerHTML;
           const HavenPick = document.getElementById('HavenPick');
-          choices["Haven"] = HavenPick.innerHTML;
+          choices["triad"] = HavenPick.innerHTML;
           const SplitPick = document.getElementById('SplitPick');
-          choices["Split"] = SplitPick.innerHTML;
+          choices["bonsai"] = SplitPick.innerHTML;
           const AscentPick = document.getElementById('AscentPick');
-          choices["Ascent"] = AscentPick.innerHTML;
+          choices["ascent"] = AscentPick.innerHTML;
           const IceboxPick = document.getElementById('IceboxPick');
-          choices["Icebox"] = IceboxPick.innerHTML;
+          choices["port"] = IceboxPick.innerHTML;
           const BreezePick = document.getElementById('BreezePick');
-          choices["Breeze"] = BreezePick.innerHTML;
+          choices["foxtrot"] = BreezePick.innerHTML;
           const FracturePick = document.getElementById('FracturePick');
-          choices["Fracture"] = FracturePick.innerHTML;
+          choices["canyon"] = FracturePick.innerHTML;
           const PearlPick = document.getElementById('PearlPick');
-          choices["Pearl"] = PearlPick.innerHTML;
+          choices["pitt"] = PearlPick.innerHTML;
           const LotusPick = document.getElementById('LotusSelect');
-          choices["Lotus"] = LotusPick.innerHTML;
+          choices["jam"] = LotusPick.innerHTML;
           console.log(choices)
         });
       });
     });
     // onloading
     const choices = {}
-    const maporder = ["Bind","Haven","Split","Ascent","Icebox","Breeze","Fracture","Pearl","Lotus"]
+    const maporder = ["duality","triad","bonsai","ascent","port","foxtrot","canyon","pitt","jam"]
     InitializeChoices = () => {
       let x = 0;
       dropdowns.forEach(dropdown => {
@@ -472,17 +515,8 @@
         choices[maporder[x]] = picked.innerHTML;
         x++;
       })
-      console.log(choices)
     };
     // Starting Scan
-    ScanStart = () => {
-      data = {}
-      const refdelay = document.getElementById('num').innerHTML;
-      console.log(refdelay);
-      ipcRender.on('Run-Locker-response', (event, arg) => {
-        console.log("ScanStartIPC!");
-      })
-      ipcRender.send('Run-Locker-action',data);
-    }
+    
   </script>
 </html>

@@ -41,15 +41,16 @@ body {
 }
 
 /* SLIDER CONTROLS */ 
+/* Refresh slider */
 #delay {
   position: absolute;
-  top: 50%;
-  left: 22%;
+  top: 40%;
+  left: 21.5%;
   transform: translate(-50%,-50%);
 }
 #delayspan{
   position: absolute;
-  top: 45%;
+  top: 36%;
   left: 22%;
   transform: translate(-50%,-50%);
 }
@@ -62,24 +63,88 @@ body {
 }
 #num {
   position: absolute;
-  top: 39%;
+  top: 38%;
   left: 115%;
   transform: translate(-50%,-50%);
 }
 #ms {
   position: absolute;
-  top: 39%;
+  top: 38%;
+  left: 130%;
+  transform: translate(-50%,-50%);
+}
+/* Hover slider */
+#delay2 {
+  position: absolute;
+  top: 47%;
+  left: 21.5%;
+  transform: translate(-50%,-50%);
+}
+#delayspan2{
+  position: absolute;
+  top: 43%;
+  left: 22%;
+  transform: translate(-50%,-50%);
+}
+#delaytitle2{
+  position: absolute;
+  top: 10%;
+  left: 70%;
+  transform: translate(-50%,-50%);
+  white-space: nowrap;
+}
+#num2 {
+  position: absolute;
+  top: 38%;
+  left: 115%;
+  transform: translate(-50%,-50%);
+}
+#ms2 {
+  position: absolute;
+  top: 38%;
+  left: 130%;
+  transform: translate(-50%,-50%);
+}
+/* LOCK slider */
+#delay3 {
+  position: absolute;
+  top: 54%;
+  left: 21.5%;
+  transform: translate(-50%,-50%);
+}
+#delayspan3{
+  position: absolute;
+  top: 50%;
+  left: 22%;
+  transform: translate(-50%,-50%);
+}
+#delaytitle3{
+  position: absolute;
+  top: 10%;
+  left: 70%;
+  transform: translate(-50%,-50%);
+  white-space: nowrap;
+}
+#num3 {
+  position: absolute;
+  top: 38%;
+  left: 115%;
+  transform: translate(-50%,-50%);
+}
+#ms3 {
+  position: absolute;
+  top: 38%;
   left: 130%;
   transform: translate(-50%,-50%);
 }
 
+/* MAP SELECTION CONTROLS */
 #maps{
   position: absolute;
   top: 8%;
   left: 4%;
 }
 
-/* MAP SELECTION CONTROLS */
 .permap{
   position: relative;
 }
@@ -492,7 +557,7 @@ body {
 /* SCAN BUTTON */
 #startscan{
   position: absolute;
-  top: 75%;
+  top: 80%;
   left: 22%;
   transform: translate(-50%,-50%);
   width: 150px;
@@ -544,7 +609,7 @@ body {
 /* Suppress Scanning */
 #endscan{
   position: absolute;
-  top: 60%;
+  top: 66%;
   left: 22%;
   transform: translate(-50%,-50%);
   width: 150px;
