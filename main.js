@@ -116,6 +116,10 @@ electronIpcMain.on('data-from-renderer', (event, data) => {
   }
   // Create py instance
   var pyshell = new PythonShell('locker.py',options)
+  // Establishing console channel back to main.js
+  pyshell.on('message', function (message) {
+    console.log(message);
+  });
   pyproc = pyshell.childProcess;
 })
 
