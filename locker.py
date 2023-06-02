@@ -2,9 +2,10 @@ import json, time
 import sys
 from valclient.client import Client
 
-arguments = sys.argv[1:]
-print(arguments)
+#Using Valclient api to bypass ratelimits
 
+#Collecting arguements from main.js
+arguments = sys.argv[1:]
 valid = False
 agents = {}
 seenMatches = []
@@ -14,18 +15,19 @@ loopDelay = float(arguments[1])
 hoverDelay = float(arguments[2])
 lockDelay = float(arguments[3])
 agents = None
-print(maps)
 
-
+#Collecting agent IDS from data.json
 with open('data.json', 'r') as f:
     data = json.load(f)
     agents = data['agents']
     f.close()
     
+#Initializing Valclient
 client = Client(region=region)
 print("Client session grabbed!")
 client.activate()
 
+#Monitor and Lock
 while True:
     try:
         time.sleep(loopDelay)

@@ -144,7 +144,6 @@ body {
   top: 8%;
   left: 4%;
 }
-
 .permap{
   position: relative;
 }
@@ -153,7 +152,6 @@ body {
   top: 8%;
   left: 15%;
 }
-
 .dropdown{
   min-width: 100px;
   max-height: 20px;
@@ -162,11 +160,9 @@ body {
   top: 80%;
   left: -18px;
 }
-
 .dropdown *{
   box-sizing: border-box;
 }
-
 .select{
   background: #2a2f3b;
   color: #fff;
@@ -179,16 +175,15 @@ body {
   cursor: pointer;
   transition: background 0.3s;
 }
+
 /* clicked styles */
 .select-clicked{
   border: 2px #26489a solid;
   box-shadow: 0 0 0.8em #26489a;
 }
-
 .select:hover{
   background: #323741;
 }
-
 .caret{
   width: 0;
   height: 0;
@@ -197,21 +192,19 @@ body {
   border-top: 6px solid #fff;
   transition: 0.3s;
 }
+
 /* rotate styles */
 .caret-rotate{
   transform: rotate(180deg);
 }
-
 #menu li:hover ul{
   max-height: 250px;
   overflow-y:auto;
   overflow: hidden;
 }
-
 #menu li ul{
   overflow: hidden;
 }
-
 .menu {
   list-style: none;
   padding: 0.2em 0.5em;
@@ -342,6 +335,7 @@ body {
   float: left
 }
 
+/* Indicators for window controls */
 #indicator {
   position: relative; 
   width: 200px;
@@ -349,7 +343,6 @@ body {
   background-color: white;
   border: 1px solid #dddddd;
 }
-
 #main {
   height: calc(100% - 32px);
   margin-top: 32px;
@@ -357,27 +350,24 @@ body {
   overflow-y: auto;
 }
 
+/* Titlebar */
 #titlebar {
   padding: 4px;
 }
-
 #titlebar #drag-region {
   width: 100%;
   height: 100%;
   -webkit-app-region: drag;
   color: #48545c;
 }
-
 #titlebar {
   color: #2f4446;
   background: #48545c;
 }
-
 #titlebar #drag-region {
   display: grid;
   grid-template-columns: auto 138px;
 }
-
 #window-title {
   grid-column: 1;
   display: flex;
@@ -388,18 +378,15 @@ body {
   font-size: 12px;
   color: #FFF;
 }
-
 .maximized #window-title {
   margin-left: 12px;
 }
-
 #window-title span {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   line-height: 1.5;
 }
-
 #window-controls {
   display: grid;
   grid-template-columns: repeat(3, 46px);
@@ -408,11 +395,9 @@ body {
   right: 0;
   height: 100%;
 }
-
 #window-controls {
   -webkit-app-region: no-drag;
 }
-
 #window-controls .button {
   grid-row: 1 / span 1;
   display: flex;
@@ -421,7 +406,6 @@ body {
   width: 100%;
   height: 100%;
 }
-
 @media (-webkit-device-pixel-ratio: 1.5), (device-pixel-ratio: 1.5),
 (-webkit-device-pixel-ratio: 2), (device-pixel-ratio: 2),
 (-webkit-device-pixel-ratio: 3), (device-pixel-ratio: 3) {
@@ -430,30 +414,24 @@ body {
     height: 10px;
   }
 }
-
 #window-controls .button {
   user-select: none;
 }
-
 #window-controls .button:hover {
   background: rgba(255,255,255,0.1);
 }
-
 #window-controls .button:active {
   background: rgba(255,255,255,0.2);
 }
-
 #close-button:hover {
   background: #E81123 !important;
 }
-
 #close-button:active {
   background: #F1707A !important;
 }
 #close-button:active .icon {
   filter: invert(1);
 }
-
 #min-button {
   grid-column: 1;
 }
@@ -463,21 +441,17 @@ body {
 #close-button {
   grid-column: 3;
 }
-
 #restore-button {
   display: none !important;
 }
-
 .maximized #restore-button {
   display: flex !important;
 }
-
 .maximized #max-button {
   display: none;
 }
 
 /* STATUS LIGHT */
-
 .status-light {
   margin: 5px 10px;
   width: 12px;
@@ -485,37 +459,30 @@ body {
   border-radius: 50%;
   float: left;
 }
-
 .sl-red {
     background-color: #940;
     box-shadow: #225 0 -1px 7px 1px, inset #600 0 -1px 9px, #F00 0 0px 8px;
 }
-
 .sl-red-bold {
     background-color: #C22;
     box-shadow: #338 0 -1px 7px 1px, inset #600 0 -1px 9px, #F00 0 0px 8px;
 }
-
 .sl-green {
     background-color: #690;
     box-shadow: #225 0 -1px 7px 1px, inset #460 0 -1px 9px, #7D0 0 0px 8px;
 }
-
 .sl-green-faded {
     background-color: desaturate(#690, 30%);
     box-shadow: #225 0 -1px 7px 1px, inset #460 0 -1px 9px, #7D0 0 0px 8px;
 }
-
 .sl-blue {
     background-color: #4AB;
     box-shadow: #225 0 -1px 7px 1px, inset #006 0 -1px 9px, #06F 0 0px 8px;
 }
-
 .sl-blue-faded {
     background-color: desaturate(#4AB, 30%);
     box-shadow: #225 0 -1px 7px 1px, inset #339 0 -1px 9px, #28F 0 0px 4px;
 }
-
 .panel {
     overflow: hidden;
     display: inline-block;
@@ -523,7 +490,6 @@ body {
     border-radius: 8px;
     background-color: #afccff;
 }
-
 #indicator{
   position: absolute;
   left: 10px;

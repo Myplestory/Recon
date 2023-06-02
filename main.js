@@ -3,8 +3,8 @@ const path = require('path')
 const electronIpcMain = require('electron').ipcMain;
 const {PythonShell} = require('python-shell');
 
+// Global win var to prevent garbage collection
 let win;
-
 
 function createWindow() {
   // window creation
@@ -31,7 +31,6 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
 
-
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
     // On macOS it is common for applications and their menu bar
@@ -40,7 +39,6 @@ app.on('window-all-closed', function () {
         app.quit();
     }
 });
-
 app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
@@ -52,14 +50,11 @@ app.on('activate', function () {
 // WINDOW CONTROLS
 
 let minmaxstate = false;
-
+//Window handlers
 electronIpcMain.on('window:minimize', () => {
-  // Now we can access the window variable
   win.minimize();
 });
-
 electronIpcMain.on('window:maximize', () => {
-  // Now we can access the window variable
   if (minmaxstate === false){
     win.maximize();
     minmaxstate = true;
@@ -69,19 +64,13 @@ electronIpcMain.on('window:maximize', () => {
     minmaxstate = false;
   }
 });
-
 electronIpcMain.on('window:restore', () => {
-  // Now we can access the window variable
   win.restore();
 });
-
 electronIpcMain.on('window:close', () => {
-  // Now we can access the window variable
   win.close();
 });
-
 electronIpcMain.on('window:maximize', () => {
-  // Now we can access the window variable
   if (minmaxstate === false){
     win.maximize();
     minmaxstate = true;
@@ -93,7 +82,9 @@ electronIpcMain.on('window:maximize', () => {
 });
 
 //Run Locker script with posted json values
+//Global process variable so we can terminate it eventually
 var pyproc;
+//Handler for scan start
 electronIpcMain.on('data-from-renderer', (event, data) => {
   const jsonargs = data[0];
   const rdelay = data[1];
@@ -120,10 +111,12 @@ electronIpcMain.on('data-from-renderer', (event, data) => {
   pyshell.on('message', function (message) {
     console.log(message);
   });
+  //Process variable
   pyproc = pyshell.childProcess;
 })
-
+ // StopScan Handler
 electronIpcMain.on('turn-off', (event) => {
+  // Kill python process
   pyproc.kill('SIGINT');
   console.log("pyscript ended!");
 })

@@ -36,12 +36,6 @@ function handleWindowControls() {
         win.close();
     });
 
-    // // event handler when scanbutton is clicked
-    // document.getElementById('startscan').addEventListener('click', () => {
-    //   let packed = JSON.stringify(choices)
-    //   window.ipcRender.send('start:scan',packed).then((result) => { console.log(result); });
-    // });
-
     // Toggle maximise/restore buttons when maximisation/unmaximisation occurs
     toggleMaxRestoreButtons();
     win.on('maximize', toggleMaxRestoreButtons);

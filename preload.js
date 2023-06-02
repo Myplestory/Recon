@@ -47,9 +47,11 @@ contextBridge.exposeInMainWorld(
                 return ipcRenderer.invoke(channel, args);
             }
         },
+        // Dedicated channel for scanstart
         scan: (data) => {
             ipcRenderer.send('data-from-renderer', data);
           },
+        // Dedicated channel for scanend
         endscan: () => {
             ipcRenderer.send('turn-off');
         }

@@ -9,7 +9,6 @@
     <script></script>
   </head>
   <body onload="InitializeChoices()">
-
     <header id="titlebar">
       <div id="drag-region">
         <div id="window-title">
@@ -404,15 +403,12 @@
     document.getElementById('min-button').addEventListener('click', () => {
         window.ipcR.send('window:minimize');
     });
-
     document.getElementById('restore-button').addEventListener('click', () => {
         window.ipcR.send('window:restore');
     });
-
     document.getElementById('max-button').addEventListener('click', () => {
         window.ipcR.send('window:maximize');
     });
-
     document.getElementById('close-button').addEventListener('click', () => {
         window.ipcR.send('window:close');
     });
@@ -445,6 +441,7 @@
       input3.addEventListener("input", () => {
         number3.textContent = input3.value;
       });
+
     //loop through all dropdown elements
     dropdowns.forEach(dropdown => {
       // get inner elements from each dropdown
@@ -516,7 +513,5 @@
         x++;
       })
     };
-    // Starting Scan
-    
   </script>
 </html>
