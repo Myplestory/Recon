@@ -384,13 +384,33 @@
         </div>
         <div id="indicator">
           <div class="panel">
-            <div class="status-light sl-red"></div>
-            <div class="status-light sl-green"></div>
-            <div class="status-light sl-blue"></div>
+            <div class="status-light sl-red" id="redlight"></div>
+            <div class="status-light sl-green" id="greenlight"></div>
+            <div class="status-light sl-blue" id="bluelight"></div>
           </div>
         </div>
-        <div id="logs">
-          <textarea id="logprint" rows="20" cols="55" autofocus readonly wrap="soft" style="background-color:#8eafe7"></textarea>
+        <div id="fail">
+          <span>FAILED</span>
+        </div>
+        <div id="ready">
+          <span>READY</span>
+        </div>
+        <div id="live">
+          <span>LIVE</span>
+        </div>
+        <div class="dropdown" id="RegionDropdown">
+          <div class="select">
+            <span class="selected" id="RegionSelect">North America</span>
+            <div class="caret"></div>
+          </div>
+          <ul class="menu">
+            <li class="active">Asia Pacific</li>
+            <li>Brazil</li>
+            <li>Europe</li>
+            <li>North America</li>
+            <li>Latin America</li>
+            <li>Korea</li>
+          </ul>
         </div>
       </aside>
     </div>
@@ -420,9 +440,18 @@
       const hoverdelay = document.getElementById("num2").innerHTML;
       const lockdelay = document.getElementById("num3").innerHTML;
       window.ipcR.scan([packed,refreshdelay,hoverdelay,lockdelay]);
+      document.getElementById("greenlight").style.visibility = "hidden";
+      document.getElementById("ready").style.visibility = "hidden";
+      document.getElementById("bluelight").style.visibility = "visible";
+      document.getElementById("live").style.visibility = "visible";
     });
+    // event handler when endscan is clicked
     document.getElementById('endscan').addEventListener('click', () => {
       window.ipcR.endscan();
+      document.getElementById("greenlight").style.visibility = "visible";
+      document.getElementById("ready").style.visibility = "visible";
+      document.getElementById("bluelight").style.visibility = "hidden";
+      document.getElementById("live").style.visibility = "hidden";
     });
 
     // slider event handlers
@@ -497,13 +526,16 @@
           choices["pitt"] = PearlPick.innerHTML;
           const LotusPick = document.getElementById('LotusSelect');
           choices["jam"] = LotusPick.innerHTML;
+          const regionpick = document.getElementById('RegionSelect');
+          region = regionpick.innerHTML
           console.log(choices)
         });
       });
     });
     // onloading
     const choices = {}
-    const maporder = ["duality","triad","bonsai","ascent","port","foxtrot","canyon","pitt","jam"]
+    const region = ""
+    const maporder = ["duality","triad","bonsai","ascent","port","foxtrot","canyon","pitt","jam","region"]
     InitializeChoices = () => {
       let x = 0;
       dropdowns.forEach(dropdown => {
@@ -512,6 +544,10 @@
         choices[maporder[x]] = picked.innerHTML;
         x++;
       })
+      document.getElementById("redlight").style.visibility = "hidden";
+      document.getElementById("fail").style.visibility = "hidden";
+      document.getElementById("bluelight").style.visibility = "hidden";
+      document.getElementById("live").style.visibility = "hidden";
     };
   </script>
 </html>

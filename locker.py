@@ -9,7 +9,7 @@ arguments = sys.argv[1:]
 valid = False
 agents = {}
 seenMatches = []
-region = "na"
+geomap = {}
 maps = json.loads(arguments[0])
 loopDelay = float(arguments[1])
 hoverDelay = float(arguments[2])
@@ -20,10 +20,12 @@ agents = None
 with open('data.json', 'r') as f:
     data = json.load(f)
     agents = data['agents']
+    geomap = data['GeoServer']
     f.close()
-    
+Region = geomap[maps["region"]]
+
 #Initializing Valclient
-client = Client(region=region)
+client = Client(region=Region)
 print("Client session grabbed!")
 client.activate()
 

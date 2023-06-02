@@ -38,5 +38,14 @@
       "pitt": "pearl",
       "bonsai": "split",
       "jam": "lotus"
+  },
+
+  "GeoServer": {
+    "North America": "na",
+    "Latin America": "latam",
+    "Brazil": "br",
+    "Europe": "eu",
+    "Asia Pacific": "ap",
+    "Korea": "kr"
   }
 }

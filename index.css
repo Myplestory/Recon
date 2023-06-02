@@ -44,14 +44,14 @@ body {
 /* Refresh slider */
 #delay {
   position: absolute;
-  top: 40%;
-  left: 21.5%;
+  top: 45%;
+  left: 23%;
   transform: translate(-50%,-50%);
 }
 #delayspan{
   position: absolute;
-  top: 36%;
-  left: 22%;
+  top: 41%;
+  left: 23%;
   transform: translate(-50%,-50%);
 }
 #delaytitle{
@@ -76,14 +76,14 @@ body {
 /* Hover slider */
 #delay2 {
   position: absolute;
-  top: 47%;
-  left: 21.5%;
+  top: 52%;
+  left: 23%;
   transform: translate(-50%,-50%);
 }
 #delayspan2{
   position: absolute;
-  top: 43%;
-  left: 22%;
+  top: 48%;
+  left: 23%;
   transform: translate(-50%,-50%);
 }
 #delaytitle2{
@@ -108,14 +108,14 @@ body {
 /* LOCK slider */
 #delay3 {
   position: absolute;
-  top: 54%;
-  left: 21.5%;
+  top: 59%;
+  left: 23%;
   transform: translate(-50%,-50%);
 }
 #delayspan3{
   position: absolute;
-  top: 50%;
-  left: 22%;
+  top: 55%;
+  left: 23%;
   transform: translate(-50%,-50%);
 }
 #delaytitle3{
@@ -335,6 +335,13 @@ body {
   float: left
 }
 
+#RegionDropdown{
+  left: 60%;
+  top: 37%;
+  height: 100px;
+  width: 150px;
+}
+
 /* Indicators for window controls */
 #indicator {
   position: relative; 
@@ -463,25 +470,13 @@ body {
     background-color: #940;
     box-shadow: #225 0 -1px 7px 1px, inset #600 0 -1px 9px, #F00 0 0px 8px;
 }
-.sl-red-bold {
-    background-color: #C22;
-    box-shadow: #338 0 -1px 7px 1px, inset #600 0 -1px 9px, #F00 0 0px 8px;
-}
 .sl-green {
     background-color: #690;
-    box-shadow: #225 0 -1px 7px 1px, inset #460 0 -1px 9px, #7D0 0 0px 8px;
-}
-.sl-green-faded {
-    background-color: desaturate(#690, 30%);
     box-shadow: #225 0 -1px 7px 1px, inset #460 0 -1px 9px, #7D0 0 0px 8px;
 }
 .sl-blue {
     background-color: #4AB;
     box-shadow: #225 0 -1px 7px 1px, inset #006 0 -1px 9px, #06F 0 0px 8px;
-}
-.sl-blue-faded {
-    background-color: desaturate(#4AB, 30%);
-    box-shadow: #225 0 -1px 7px 1px, inset #339 0 -1px 9px, #28F 0 0px 4px;
 }
 .panel {
     overflow: hidden;
@@ -492,39 +487,38 @@ body {
 }
 #indicator{
   position: absolute;
-  left: 10px;
-  top: 90%;
+  left: 7%;
+  top: 77%;
   max-height: 50px;
   background-color: #afccff;
   border: #afccff;
+  transform: rotate(90deg);
+}
+
+#fail{
+  position: absolute;
+  left: 21.3%;
+  top: 66.7%;
+}
+#ready{
+  position: absolute;
+  left: 21.3%;
+  top: 72.3%;
+}
+#live{
+  position: absolute;
+  left: 21.3%;
+  top: 77.9%;
 }
 
 /* LOGGING AND PRINTING */
-#logs{
-  position: absolute;
-  left: 50%;
-  top: 40%;
-  height: 50%;
-  width: 50%;
-  max-height: 50%;
-  max-width: 50%;
-}
-.logprint{
-  position: absolute;
-  height: 50%;
-  width: 50%;
-  max-height: 50%;
-  max-width: 50%;
-  border: #788aaa;
-  transform: translateX(10%);
-  transform: translateY(-10%);
-}
+
 
 /* SCAN BUTTON */
 #startscan{
   position: absolute;
   top: 80%;
-  left: 22%;
+  left: 70%;
   transform: translate(-50%,-50%);
   width: 150px;
   height: 60px;
@@ -575,8 +569,8 @@ body {
 /* Suppress Scanning */
 #endscan{
   position: absolute;
-  top: 66%;
-  left: 22%;
+  top: 63%;
+  left: 70%;
   transform: translate(-50%,-50%);
   width: 150px;
   height: 60px;
