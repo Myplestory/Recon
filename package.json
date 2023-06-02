@@ -14,5 +14,8 @@
   },
   "dependencies": {
     "python-shell": "^5.0.0"
+  },
+  "build": {
+    "asar": false
   }
 }

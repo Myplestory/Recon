@@ -3,6 +3,7 @@ import sys
 from valclient.client import Client
 
 #Using Valclient api to bypass ratelimits
+print(sys.executable)
 
 #Collecting arguments from main.js
 arguments = sys.argv[1:]
