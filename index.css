@@ -513,7 +513,6 @@ body {
 
 /* LOGGING AND PRINTING */
 
-
 /* SCAN BUTTON */
 #startscan{
   position: absolute;
@@ -609,7 +608,7 @@ body {
   opacity: 1;
 }
 
-@keyframes animate {
+@keyframes animate{
   0%{
       background-position: 0%;
   }

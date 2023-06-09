@@ -1,7 +1,9 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const electronIpcMain = require('electron').ipcMain;
-const {PythonShell} = require('python-shell');
+var fpath = require('path');
+const { ValClient } = require("valclient.js");
+var fs = require('fs');
 
 // Global win var to prevent garbage collection
 let win;
@@ -23,7 +25,12 @@ function createWindow() {
   // opens index.html and gives it privilages
   win.loadFile('index.html')
   win.setBackgroundColor('#88b9dc')
+  client = new ValClient()
   return win;
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // This method will be called when Electron has finished
@@ -81,42 +88,76 @@ electronIpcMain.on('window:maximize', () => {
   }
 });
 
-//Run Locker script with posted json values
-//Global process variable so we can terminate it eventually
-var pyproc;
+// Var to keep track of scanning state
+var boolswitch = false;
+
+// Read from json
+
 //Handler for scan start
 electronIpcMain.on('data-from-renderer', (event, data) => {
-  const jsonargs = data[0];
-  const rdelay = data[1];
-  const hdelay = data[2];
-  const ldelay = data[3];
-  console.log(jsonargs);
-  console.log(rdelay);
-  console.log(hdelay);
-  console.log(ldelay);
-  //Initialize args to pass to .py
-  let options = {
-    mode: 'text',
-    pythonOptions: ['-u'],
-    args: [
-      jsonargs,
-      rdelay,
-      hdelay,
-      ldelay,
-    ],
+  //Initialize args to start locking phase
+  const seenMatches = []
+  const jsonargs = JSON.parse(data[0]);
+  const rdelay = data[1]*1000;
+  const hdelay = data[2]*1000;
+  const ldelay = data[3]*1000;
+  let agents;
+  let geomap;
+  var jdata = fpath.join(__dirname, 'data.json');
+  var jobj = fs.readFileSync(jdata,'utf8');
+  var obj = JSON.parse(jobj);
+  console.log(obj)
+  agents = obj["agents"];
+  geomap = obj["GeoServer"];
+  console.log(agents)
+  const Region = geomap[jsonargs["region"]];
+  console.log(Region)
+  // Locking loop
+  boolswitch = true;
+  while (boolswitch == true){
+    sleep(100)
+    lock(jsonargs,rdelay,hdelay,ldelay,seenMatches,Region)
   }
-  // Create py instance
-  var pyshell = new PythonShell('locker.py',options)
-  // Establishing console channel back to main.js
-  pyshell.on('message', function (message) {
-    console.log(message);
-  });
-  //Process variable
-  pyproc = pyshell.childProcess;
 })
- // StopScan Handler
+
+function lock(jsonargs,rdelay,hdelay,ldelay,seenMatches,Region){
+  const clientobj = new ValClient();
+    try{
+      // inizialite local endpoint connection
+      clientobj.init({ region: Region }).then(async () => {
+        let statesess = await clientobj.player.onlineFriend(clientobj.puuid)
+        await sleep(rdelay);
+        console.log(statesess)
+        let matchID = await clientobj.pre_game.current();
+        console.log(matchID)
+        if (statesess["sessionLoopState"] == "PREGAME" && !seenMatches.includes(matchID)){
+          seenMatches.push(matchID);
+          let matchInfo = await clientobj.pre_game.details(matchID);
+          mapName = matchInfo["MapID"].split('/')[-1].toLowerCase()
+          console.log(mapName);
+          if (jsonargs[mapName]){
+            pick = maps[mapName];
+            console.log(pick)
+            choice = agents[pick];
+            console.log(choice)
+            sleep(hdelay);
+            await clientobj.pre_game.selectCharacter(choice);
+            console.log("hovered...")
+            await sleep(ldelay);
+            clientobj.pre_game.lockCharacter(choice);
+            console.log("locked...")
+          }
+        }
+        })
+      }
+    // catches and processes err
+    catch(err){
+      console.log(err)
+    }
+}
+
+// StopScan Handler
 electronIpcMain.on('turn-off', (event) => {
-  // Kill python process
-  pyproc.kill('SIGINT');
-  console.log("pyscript ended!");
+  // Kill loop
+  boolswitch = false;
 })

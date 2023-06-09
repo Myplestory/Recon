@@ -3,7 +3,6 @@ import sys
 from valclient.client import Client
 
 #Using Valclient api to bypass ratelimits
-print(sys.executable)
 
 #Collecting arguments from main.js
 arguments = sys.argv[1:]
@@ -25,14 +24,13 @@ with open('data.json', 'r') as f:
     f.close()
 Region = geomap[maps["region"]]
 
-#Initializing Valclient
-client = Client(region=Region)
-print("Client session grabbed!")
-client.activate()
-
 #Monitor and Lock
 while True:
     try:
+        #Initializing Valclient
+        client = Client(region=Region)
+        print("Client session grabbed!")
+        client.activate()
         time.sleep(loopDelay)
         sessionState = client.fetch_presence(client.puuid)['sessionLoopState']
         matchID = client.pregame_fetch_match()['ID']

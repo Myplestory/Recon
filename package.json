@@ -1,7 +1,7 @@
 {
   "name": "sapphire",
   "version": "1.0.0",
-  "description": "CSGO Bot",
+  "description": "Valorant Agent Locker",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,7 +13,10 @@
     "electron": "^24.1.2"
   },
   "dependencies": {
-    "python-shell": "^5.0.0"
+    "fix-path": "^4.0.0",
+    "fs": "^0.0.1-security",
+    "python-shell": "^5.0.0",
+    "valclient.js": "^1.2.0"
   },
   "build": {
     "asar": false
