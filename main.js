@@ -94,10 +94,10 @@ electronIpcMain.on('window:maximize', () => {
   }
 });
 
-electronIpcMain.handle('clientstatus', async (event, data) => {
-  const region = data
-  console.log(region)
-})
+// electronIpcMain.handle('clientstatus', async (event, data) => {
+//   const region = data
+//   console.log(region)
+// })
 
 //Handler for scan start
 electronIpcMain.on('data-from-renderer', (event, data) => {
