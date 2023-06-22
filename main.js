@@ -3,6 +3,7 @@ const path = require('path')
 const electronIpcMain = require('electron').ipcMain;
 var fpath = require('path');
 const { ValClient } = require("valclient.js");
+var Proc = require('child_process').execFile;
 var fs = require('fs');
 
 // Global win var to prevent garbage collection
@@ -89,75 +90,87 @@ electronIpcMain.on('window:maximize', () => {
 });
 
 // Var to keep track of scanning state
-var boolswitch = false;
+// var boolswitch = false;
+
+var pyfile;
 
 // Read from json
 
 //Handler for scan start
 electronIpcMain.on('data-from-renderer', (event, data) => {
   //Initialize args to start locking phase
-  const seenMatches = []
-  const jsonargs = JSON.parse(data[0]);
-  const rdelay = data[1]*1000;
-  const hdelay = data[2]*1000;
-  const ldelay = data[3]*1000;
-  let agents;
-  let geomap;
-  var jdata = fpath.join(__dirname, 'data.json');
-  var jobj = fs.readFileSync(jdata,'utf8');
-  var obj = JSON.parse(jobj);
-  console.log(obj)
-  agents = obj["agents"];
-  geomap = obj["GeoServer"];
-  console.log(agents)
-  const Region = geomap[jsonargs["region"]];
-  console.log(Region)
+  // const seenMatches = []
+  const jsonargs = data[0];
+  const rdelay = data[1];
+  const hdelay = data[2];
+  const ldelay = data[3];
+  // let agents;
+  // let geomap;
+  // var jdata = fpath.join(__dirname, 'data.json');
+  // var jobj = fs.readFileSync(jdata,'utf8');
+  // var obj = JSON.parse(jobj);
+  // console.log(obj)
+  // agents = obj["agents"];
+  // geomap = obj["GeoServer"];
+  // console.log(agents)
+  // const Region = geomap[jsonargs["region"]];
+  // console.log(Region)
+  var f = fpath.join(__dirname, 'locker.exe')
+  console.log("Process Path -> " + f)
+  pyfile = Proc(f,[jsonargs,rdelay,hdelay,ldelay], function(err, data) {  
+    console.log(err)
+    console.log(data.toString());                       
+  }); 
   // Locking loop
-  boolswitch = true;
-  while (boolswitch == true){
-    sleep(100)
-    lock(jsonargs,rdelay,hdelay,ldelay,seenMatches,Region)
-  }
+  // boolswitch = true;
+  // while (boolswitch == true){
+  //   sleep(100)
+  //   lock(jsonargs,rdelay,hdelay,ldelay,seenMatches,Region)
+  // }
+
 })
 
-function lock(jsonargs,rdelay,hdelay,ldelay,seenMatches,Region){
-  const clientobj = new ValClient();
-    try{
-      // inizialite local endpoint connection
-      clientobj.init({ region: Region }).then(async () => {
-        let statesess = await clientobj.player.onlineFriend(clientobj.puuid)
-        await sleep(rdelay);
-        console.log(statesess)
-        let matchID = await clientobj.pre_game.current();
-        console.log(matchID)
-        if (statesess["sessionLoopState"] == "PREGAME" && !seenMatches.includes(matchID)){
-          seenMatches.push(matchID);
-          let matchInfo = await clientobj.pre_game.details(matchID);
-          mapName = matchInfo["MapID"].split('/')[-1].toLowerCase()
-          console.log(mapName);
-          if (jsonargs[mapName]){
-            pick = maps[mapName];
-            console.log(pick)
-            choice = agents[pick];
-            console.log(choice)
-            sleep(hdelay);
-            await clientobj.pre_game.selectCharacter(choice);
-            console.log("hovered...")
-            await sleep(ldelay);
-            clientobj.pre_game.lockCharacter(choice);
-            console.log("locked...")
-          }
-        }
-        })
-      }
-    // catches and processes err
-    catch(err){
-      console.log(err)
-    }
-}
+// function lock(jsonargs,rdelay,hdelay,ldelay,seenMatches,Region){
+//   const clientobj = new ValClient();
+//     try{
+//       // inizialite local endpoint connection
+//       clientobj.init({ region: Region }).then(async () => {
+//         let statesess = await clientobj.player.onlineFriend(clientobj.puuid)
+//         await sleep(rdelay);
+//         console.log(statesess)
+//         let matchID = await clientobj.pre_game.current();
+//         console.log(matchID)
+//         if (statesess["sessionLoopState"] == "PREGAME" && !seenMatches.includes(matchID)){
+//           seenMatches.push(matchID);
+//           let matchInfo = await clientobj.pre_game.details(matchID);
+//           mapName = matchInfo["MapID"].split('/')[-1].toLowerCase()
+//           console.log(mapName);
+//           if (jsonargs[mapName]){
+//             pick = maps[mapName];
+//             console.log(pick)
+//             choice = agents[pick];
+//             console.log(choice)
+//             sleep(hdelay);
+//             await clientobj.pre_game.selectCharacter(choice);
+//             console.log("hovered...")
+//             await sleep(ldelay);
+//             clientobj.pre_game.lockCharacter(choice);
+//             console.log("locked...")
+//           }
+//         }
+//         })
+//       }
+//     // catches and processes err
+//     catch(err){
+//       console.log(err)
+//     }
+// }
 
 // StopScan Handler
 electronIpcMain.on('turn-off', (event) => {
   // Kill loop
-  boolswitch = false;
+  // boolswitch = false;
+  console.log("Killed child process!")
+  pyfile.stdin.pause();
+  pyfile.kill()
 })

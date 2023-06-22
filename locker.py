@@ -1,7 +1,16 @@
 import json, time
 import sys
 from valclient.client import Client
+import os
 
+def resource_path(relative):
+    return os.path.join(
+        os.environ.get(
+            "_MEIPASS2",
+            os.path.abspath(".")
+        ),
+        relative
+    )
 #Using Valclient api to bypass ratelimits
 
 #Collecting arguments from main.js
@@ -17,7 +26,7 @@ lockDelay = float(arguments[3])
 agents = None
 
 #Collecting IDS from data.json
-with open('data.json', 'r') as f:
+with open(resource_path('resources/app/data.json'), 'r') as f:
     data = json.load(f)
     agents = data['agents']
     geomap = data['GeoServer']
