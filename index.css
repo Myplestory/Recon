@@ -6,7 +6,7 @@ html, body {height: 100%; margin: 0;}
 
 body {
   font-family: "Segoe UI", sans-serif;
-  background: #afccff;
+  background: #6ea3c6;
   color: #FFF;
 }
 
@@ -483,15 +483,15 @@ body {
     display: inline-block;
     padding: 10px;
     border-radius: 8px;
-    background-color: #afccff;
+    background-color: #6ea3c6;
 }
 #indicator{
   position: absolute;
   left: 7%;
   top: 77%;
   max-height: 50px;
-  background-color: #afccff;
-  border: #afccff;
+  background-color: #6ea3c6;
+  border: #6ea3c6;
   transform: rotate(90deg);
 }
 /* Indicator text value */
@@ -529,7 +529,7 @@ body {
   text-decoration: none;
   font-family: sans-serif;
   box-sizing: border-box;
-  background: linear-gradient(90deg,#5bcedf, #f96161, #fc8f46, #36e494);
+  background: linear-gradient(90deg,#70b5e3, #f96161, #fc8f46, #36e494);
   background-size: 400%;
   border-radius: 30px;
   z-index: 1;
@@ -545,7 +545,7 @@ body {
   right: -5px;
   bottom: -5px;
   z-index: -1;
-  background: linear-gradient(90deg,#5bcedf, #f96161, #fc8f46, #36e494);
+  background: linear-gradient(90deg,#70b5e3, #f96161, #fc8f46, #36e494);
   background-size: 400px;
   border-radius: 40px;
   opacity: 0;
@@ -581,7 +581,7 @@ body {
   text-decoration: none;
   font-family: sans-serif;
   box-sizing: border-box;
-  background: linear-gradient(90deg,#5bcedf, #f96161, #fc8f46, #36e494);
+  background: linear-gradient(90deg,#70b5e3, #f96161, #fc8f46, #36e494);
   background-size: 400%;
   border-radius: 30px;
   z-index: 1;
@@ -597,7 +597,7 @@ body {
   right: -5px;
   bottom: -5px;
   z-index: -1;
-  background: linear-gradient(90deg,#5bcedf, #f96161, #fc8f46, #36e494);
+  background: linear-gradient(90deg,#70b5e3, #f96161, #fc8f46, #36e494);
   background-size: 400px;
   border-radius: 40px;
   opacity: 0;
