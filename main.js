@@ -2,11 +2,11 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const electronIpcMain = require('electron').ipcMain;
 var fpath = require('path');
-const { ValClient } = require("valclient.js");
 var Proc = require('child_process').execFile;
 
 // Global win var to prevent garbage collection
 let win;
+
 
 function createWindow() {
   // window creation
@@ -23,15 +23,14 @@ function createWindow() {
     frame: false
   })
   // opens index.html and gives it privilages
-  win.loadFile('index.html')
-  win.setBackgroundColor('#88b9dc')
-  client = new ValClient()
+  win.loadFile('index.html');
+  win.setBackgroundColor('#88b9dc');
   return win;
 }
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+// Global var to prevent garbage collection
+// We are using the execFile method due to the single threading nature of JavaScript. By compiling our Python script into an exe first, and then running it as a process, we ensure that the script runs flawlessly while the chromium window remains in use.
+var pyfile;
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -44,6 +43,14 @@ app.on('window-all-closed', function () {
     // to stay active until the user quits explicitly with Cmd + Q
     if (process.platform !== 'darwin') {
         app.quit();
+    }
+    try{
+      pyfile.stdin.pause();
+      Proc("taskkill", ["/pid", pyfile.pid, '/f', '/t']);
+      console.log("Killed child process!")
+    }
+    catch{
+      console.log("No processes to be culled!")
     }
 });
 app.on('activate', function () {
@@ -87,9 +94,10 @@ electronIpcMain.on('window:maximize', () => {
   }
 });
 
-//Global var to allow termination of nodejs process whenever
-var pyfile;
-
+electronIpcMain.handle('clientstatus', async (event, data) => {
+  const region = data
+  console.log(region)
+})
 
 //Handler for scan start
 electronIpcMain.on('data-from-renderer', (event, data) => {
@@ -98,7 +106,7 @@ electronIpcMain.on('data-from-renderer', (event, data) => {
   const rdelay = data[1];
   const hdelay = data[2];
   const ldelay = data[3];
-  //Getting correct path to script
+  //Getting correct path to script executable
   var f = fpath.join(__dirname, 'locker.exe')
   console.log("Process Path -> " + f)
   //Launch autolocking script with args
@@ -113,7 +121,12 @@ electronIpcMain.on('data-from-renderer', (event, data) => {
 // StopScan Handler
 electronIpcMain.on('turn-off', (event) => {
   // Kill loop
-  console.log("Killed child process!")
-  pyfile.stdin.pause();
-  pyfile.kill()
+  try{
+    pyfile.stdin.pause();
+    Proc("taskkill", ["/pid", pyfile.pid, '/f', '/t']);
+    console.log("Killed child process!")
+  }
+  catch{
+    console.log("No processes to be culled!")
+  }
 })

@@ -10,7 +10,6 @@ document.onreadystatechange = (event) => {
     }
 };
 
-
 window.onbeforeunload = (event) => {
     /* If window is reloaded, remove win event listeners
     (DOM element listeners get auto garbage collected but not

@@ -3,6 +3,9 @@ import sys
 from valclient.client import Client
 import os
 
+#Using Valclient api to bypass ratelimits
+
+#Relative path
 def resource_path(relative):
     return os.path.join(
         os.environ.get(
@@ -11,7 +14,6 @@ def resource_path(relative):
         ),
         relative
     )
-#Using Valclient api to bypass ratelimits
 
 #Collecting arguments from main.js
 arguments = sys.argv[1:]

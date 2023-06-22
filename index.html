@@ -432,7 +432,6 @@
     document.getElementById('close-button').addEventListener('click', () => {
         window.ipcR.send('window:close');
     });
-
     // event handler when scanbutton is clicked
     document.getElementById('startscan').addEventListener('click', () => {
       const packed = JSON.stringify(choices);

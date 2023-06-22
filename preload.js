@@ -15,9 +15,13 @@ const windowapi = {
             'turn-off',
         ],
         // From main to render.
-        'receive': [],
+        'receive': [
+
+        ],
         // From render to main and back again.
-        'sendReceive': [],
+        'sendReceive': [
+            'clientstatus'
+        ],
     }
 };
 
