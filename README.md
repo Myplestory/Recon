@@ -6,7 +6,7 @@ Please ensure that your game is open before scanning.
 
 ## FEATURES
 +**Customizable Agent selection** - based on specific maps.  
-+**Region Selection** - All major regions supported.
++**Region Selection** - All major regions supported.  
 +**Refresh delay** - The frequency that the program will attempt to access the API.  
 +**Hover Delay** - The time between accessing the API and hovering over the Agent.  
 +**Lock Delay** - The time between hovering the Agent and locking it in.  
