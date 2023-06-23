@@ -10,8 +10,11 @@ Please ensure that your game is open before scanning.
 +**Refresh delay** - The frequency that the program will attempt to access the API.  
 +**Hover Delay** - The time between accessing the API and hovering over the Agent.  
 +**Lock Delay** - The time between hovering the Agent and locking it in.  
-+**Scan** - Start scanning for a live game  
-+**Suppress** - Stop Scanning for a live game  
++**ON** - Start scanning for a live game  
++**OFF** - Suppress Scanning for a live game  
+
+## GET STARTED
+Download the latest exe from releases. Due to the unsigned nature of the executable, some operating systems might flag it. Simply click keep/allow/etc to keep the executable, and install it.
 
 
 >DISCLAIMER - Using the valorant API to instalock is against the terms of service of Riot. THIS IS MERELY AN EDUCATIONAL EXPERIMENT.  
