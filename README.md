@@ -1,6 +1,6 @@
 ### RECON  
 **Valorant Instalocker w UI**  
-![Image](https://imgur.com/yNQ03AB)
+![Image](https://imgur.com/yNQ03AB.jpg)
 
 Please ensure that your game is open before scanning.  
 
